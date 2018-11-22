@@ -9,7 +9,7 @@ export default {
   name: 'RFooter',
   render (h){
     jsx.h = h
-    return div('.r-footer', ...this.$slots.default)
+    return div('.r-footer', ...(this.$slots.default || []) )
   }
 }
 </script>

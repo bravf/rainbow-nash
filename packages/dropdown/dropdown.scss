@@ -1,0 +1,58 @@
+@import '../scss/base';
+
+.r-dropdown{
+  position: relative;
+  display: inline-block;
+
+  .r-dropdown-btn{
+    display: inline-flex;
+    .r-icon{
+      margin-left: 4px;
+    }
+
+    color: $color-black;
+    cursor: pointer;
+    &:hover{
+      color: $color-info;
+    }
+  }
+
+  .r-dropdown-list{
+    background-color: $color-white;
+    position: absolute;
+    box-shadow: $popup-shadow;
+    margin: 5px 0;
+    padding: 5px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10000;
+
+    li{
+      cursor: pointer;
+      list-style: none;
+      line-height: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      text-align: left;
+
+      a{
+        display: block;
+        color: $color-black;
+        width: 100%;
+        padding: 0 20px 0 10px;
+      }
+
+      &:hover{
+        background-color: $color-white-dark;
+      }
+    }
+  }
+  .r-dropdown-list-right{
+    right: 0;
+  }
+  .r-dropdown-list-left{
+    left: 0;
+  }
+}

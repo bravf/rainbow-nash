@@ -1,0 +1,68 @@
+@import '../scss/base';
+
+.r-tag{
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  margin: 2px 4px 2px 0;
+  padding: 0 8px;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-white-light;
+  vertical-align: middle;
+  opacity: 1;
+  overflow: hidden;
+
+  .ion-ios-close-empty{
+    cursor: pointer;
+    margin-left: 8px;
+    position: relative;
+    top: -1px;
+  }
+}
+
+.r-tag-disabled{
+  cursor: not-allowed;
+  .ion-ios-close-empty{
+    cursor: not-allowed;
+  }
+}
+
+.r-tag-small{
+  height: 16px;
+  line-height: 16px;
+
+  .ion-ios-close-empty{
+    top: -2px;
+  }
+}
+
+.r-tag-primary{
+  color: $color-primary;
+  border-color: rgba(64, 158, 255, .2);
+  background-color: rbga(64, 158, 255, .1);
+}
+
+.r-tag-success{
+  color: $color-success;
+  border-color: rgba(103,194,58, .2);
+  background-color: rbga(103,194,58, .1);
+}
+
+.r-tag-info{
+  color: $color-msg;
+  background-color: hsla(220,8%,56%,.1);
+  border-color: hsla(220,8%,56%,.2);
+}
+
+.r-tag-warning{
+  color: $color-warning;
+  border-color: rgba(235,158,5, .2);
+  background-color: rbga(235,158,5, .1);
+}
+
+.r-tag-danger{
+  color: $color-danger;
+  border-color: rgba(250,85,85, .2);
+  background-color: rbga(250,85,85, .1);
+}

@@ -9,7 +9,7 @@ export default {
   name: 'RAside',
   render (h){
     jsx.h = h
-    return div('.r-aside', ...this.$slots.default)
+    return div('.r-aside', ...(this.$slots.default || []) )
   }
 }
 </script>

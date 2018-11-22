@@ -1,0 +1,33 @@
+@import '../scss/base';
+
+.r-row {
+  @include clear();
+  position: relative;
+}
+
+.r-col {
+  float: left;
+}
+
+@for $i from 1 through 24 {
+  .r-col-span-#{$i} {
+    width: 100% / (24 / $i);
+  }
+
+  .r-col-offset-#{$i} {
+    margin-left: 100% / (24 / $i);
+  }
+}
+
+.r-row-flex {
+  display: flex;
+
+  &:before,
+  &:after {
+    display: none;
+  }
+
+  .r-col {
+    float: none;
+  }
+}

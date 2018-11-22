@@ -1,0 +1,154 @@
+<template lang="pug">
+div.panel
+  h3| Table
+  div.margin-10(style="width:700px;")
+    r-table(
+      :data="data", 
+      ref="table", 
+      :border="true", 
+      :show-header="true",
+      :sort-method="sort",
+      :sort-field="sortField",
+      :sort-dir="sortDir",
+      :loading="loading",
+      @check-all-change="checkAllChange",
+      @check-change="checkChange",
+      @row-click="rowClick",
+      :show-summary="true",
+      summary-text="总和",
+    )
+      
+      r-table-column(
+        width="50",
+        type="checkbox",
+      )
+      r-table-column(
+        width="50",
+        type="index",
+      )
+      r-table-column(title="datepicker")
+        template(slot-scope="scope")
+          r-datepicker()
+
+      r-table-column(
+        title="姓名",
+        field="name",
+        width="80",
+        :ellipsis="true",
+      )
+        template(slot-scope="scope")
+          r-tooltip()
+            span {{scope.data.name}}
+            div(slot="content")
+              | {{scope.data.name}}
+
+      r-table-column(
+        title="数学",
+        field="math",
+        align="right",
+        :sortable="true",
+        v-if="test"
+      )
+      r-table-column(
+        title="语文",
+        field="chinese.value",
+        align="right",
+        :sortable="true"
+      )
+      r-table-column(
+        title="操作",
+        align="center",
+        width="140",
+        v-if="test"
+      )
+        template(slot-scope="scope")
+          r-button(
+            type="primary",
+            size="small",
+            @click.native="_alert(scope.data.id)",
+            v-if="test"
+          )| 查看
+          r-button(
+            size="small"
+          )| 编辑
+    
+    r-page(
+      v-model="page.currPage",
+      :total="page.total",
+      :show-total="true",
+      :page-size="10000"
+    )
+
+    div(v-if="hello[0]") 123_{{hello[0].x}} 
+</template>
+
+<script>
+var data = []
+for (var i=0; i<10; i++){
+  data.push({
+    id: i,
+    name: '张三测试测试测试测试' + i,
+    math: i * 10,
+    chinese: {
+      value: i* 10 + 5
+    },
+  })
+}
+export default {
+  data () {
+    return {
+      hello: [],
+      data : data,
+      test: true,
+      sortField: 'math',
+      sortDir: 'asc',
+      loading: false,
+
+      page: {
+        currPage: 1,
+        total: 34500,
+      }
+    }
+  },
+  methods: {
+    _alert (id) {
+      //- alert(id)
+      this.$alert(id)
+    },
+    sort (dir, field) {
+      this.loading = true
+
+      setTimeout(_=>{
+        this.data.sort((a, b)=>{
+          var x = a[field] - b[field]
+
+          if (dir === 'asc'){
+            return x
+          }
+          else {
+            return -x
+          }
+        })
+
+        this.sortField = field
+        this.sortDir = dir
+
+        this.loading = false
+      }, 1000)
+      
+    },
+    rowClick (data, e) {
+      this.$message(data.id)
+    },
+    checkAllChange (isChecked) {
+      console.log(isChecked)
+    },
+    checkChange (data) {
+      console.log(data)
+    },
+    summary (columns, data) {
+      return ['你好', '', '', 100, 100, '']
+    }
+  }
+}
+</script>

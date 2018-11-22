@@ -87,7 +87,7 @@ function globalClick(exclude, callback){
 }
 
 function getTextWidth(text, font){
-  var canvas = this.getTextWidth.canvas || (this.getTextWidth.canvas = document.createElement("canvas"))
+  var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"))
   var context = canvas.getContext("2d")
   context.font = font
   var metrics = context.measureText(text)
@@ -111,6 +111,13 @@ function isdef(o){
   return o !== undefined
 }
 
+function isVueNodeType (node, ctorTag) {
+  if (node && node.$options && (node.$options._componentTag === ctorTag) ){
+    return true
+  }
+  return false
+}
+
 export {
   isArray,
   isObject,
@@ -124,4 +131,5 @@ export {
   paddingZero,
   deepClone,
   isdef,
+  isVueNodeType,
 }

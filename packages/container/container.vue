@@ -39,7 +39,7 @@ var Container = {
 
     return div('.r-container', {
       'c_r-container-vertical': this._hasAside()
-      }, ...this.$slots.default)
+      }, ...(this.$slots.default || []) ) 
   }
 }
 

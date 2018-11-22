@@ -1,0 +1,190 @@
+@import '../scss/base';
+
+.r-menu-horizontal{
+  background-color: $color-white;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
+
+  >.r-menu-item, .r-sub-menu{
+    height: inherit;
+    line-height: inherit;
+    border-bottom: 2px solid transparent;
+    float: left;
+    padding: 0 10px;
+    position: relative;
+    cursor: pointer;
+    z-index: 3;
+    user-select: none;
+
+    a{
+      color: inherit;
+      display: block;
+      display: inline-flex;
+      align-items: center;
+
+      >i{
+        margin-right: 6px;
+      }
+    }
+
+    .r-sub-menu-title{
+      >i{
+        margin-right: 6px;
+      }
+
+      .ion-ios-arrow-down, .ion-ios-arrow-up{
+        margin-left: 6px;
+        margin-right: 0;
+      }
+    }
+
+    &:hover{
+      color: $color-info;
+      border-bottom-color: $color-info;
+    }
+  }
+
+  >.r-menu-item-active{
+    color: $color-info;
+    border-bottom-color: $color-info;
+  }
+
+  .r-sub-menu-dropdown{
+    min-width: 120px;
+    position: absolute;
+    z-index: 900;
+    margin: 5px 0;
+    padding: 5px 0;
+    background-color: $color-white;
+    box-shadow: $popup-shadow;
+    overflow: hidden;
+    width: auto;
+    left: 0;
+
+    .r-menu-item{
+      height: $height;
+      line-height: $height;
+      text-align: left;
+      white-space: nowrap;
+      padding: 0 10px;
+      color: $color-black;
+
+      a{
+        color: inherit;
+      }
+
+      &:hover{
+        background-color: $color-white-dark;
+        color: $color-black;
+      }
+    }
+
+    .r-menu-item-active{
+      background-color: $color-blue-bg;
+      color: $color-info;
+
+      &:hover{
+        background-color: $color-blue-bg;
+        color: $color-info;
+      }
+    }
+  }
+
+  .r-menu-group-title{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    font-size: 12px;
+    color: $color-silver;
+  }
+}
+
+// 垂直模式
+.r-menu-vertical{
+  background-color: $color-white;
+  position: relative;
+
+  .r-menu-item, .r-sub-menu{
+    height: 40px;
+    line-height: 40px;
+    user-select: none;
+
+    a{
+      color: inherit;
+      display: block;
+
+      >i{
+        margin-right: 6px;
+      }
+    }
+
+    .r-sub-menu-title{
+      >i{
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .r-menu-item{
+    cursor: pointer;
+    padding: 0 10px;
+    border-right: 2px solid transparent;
+
+    a{
+      display: inline-flex;
+      align-items: center;
+    }
+
+    &:hover{
+      background-color: $color-white-dark;
+    }
+  }
+
+  .r-menu-group{
+    .r-menu-group-title{
+      font-size: 12px;
+      color: $color-silver;
+      padding-left: 20px;
+    }
+    .r-menu-item{
+      padding-left: 30px;
+    }
+  }
+
+  .r-sub-menu{
+    height: auto;
+
+    .r-sub-menu-dropdown{
+      .r-menu-item{
+        padding-left: 30px;
+      }
+    }
+
+    .r-sub-menu-title{
+      cursor: pointer;
+      padding: 0 10px;
+
+      &:hover{
+        background-color: $color-white-dark;
+      }  
+
+      .ion-ios-arrow-down, .ion-ios-arrow-up{
+        float: right;
+      }
+    }
+  }
+
+  .r-menu-item-active{
+    position: relative;
+    color: $color-info;
+    border-color: $color-primary;
+    background-color: $color-blue-bg;
+    z-index: 2;
+
+    &:hover{
+      background-color: $color-blue-bg;
+      color: $color-info;
+    }
+  }
+}

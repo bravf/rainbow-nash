@@ -41,10 +41,10 @@ var Card = {
     return div('.' + this.cls.join('+'),
       div('.r-card-head', 
         {vif: !!title}, 
-        ...title,
-        div('.r-card-extra', {vif: !!$slots.extra}, ...$slots.extra),
+        ...(title || []),
+        div('.r-card-extra', {vif: !!$slots.extra}, ...($slots.extra || []) ),
       ),
-      div('.r-card-body', ...$slots.default)
+      div('.r-card-body', ...($slots.default || []) )
     )
   }
 }

@@ -1,0 +1,75 @@
+<template lang="pug">
+div.margin-10
+  r-button-group
+    r-button(
+      type="primary",
+      @click.native="isShow2=true"
+    )| 显示对话框
+
+    r-button(
+      type="primary",
+      @click.native="alert"
+    )| alert
+
+    r-button(
+      type="primary",
+      @click.native="confirm"
+    )| confirm
+
+  r-modal(
+    v-model="isShow",
+    title="普通的Modal对话框标题"
+  )
+    p| 对话框内容
+    p| 对话框内容
+    p| 对话框内容
+    p| 对话框内容
+  
+  r-modal(
+    v-model="isShow2",
+    title="普通的Modal对话框标题2"
+  )
+    p| 对话框内容2
+    p| 对话框内容2
+    p| 对话框内容2
+    p| 对话框内容2
+    r-button(@click.native="isShow=true")| 点击
+
+    div(slot="footer")
+      r-button()| 取消
+      r-button(type="primary", @click.native="$alert('哈哈')")| 确定
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      isShow: false,
+      isShow2: false,
+    }
+  },
+  methods: {
+    confirm () {
+      this.$confirm({
+        title: '测试confirm',
+        content: '确定测试confirm?',
+        onOk () {
+          this.$alert('点击了确定', '', ()=>{
+            this.$message('点击了确定', 'success')
+          })
+        },
+        onCancel () {
+          this.$alert('点击了取消', '', ()=>{
+            this.$message('点击了取消', 'warning')
+          })
+        }
+      })
+    },
+    alert () {
+      this.$alert('测试alert', '', ()=>{
+        alert('哈哈')
+      })
+    }
+  }
+}
+</script>

@@ -1,0 +1,289 @@
+<template lang="pug">
+div.panel
+  h3| form
+
+  div.margin-10
+    r-form(
+      label-width="70",
+      :model="formItem",
+      :rules="ruleValidate",
+      ref="myForm"
+    )
+      
+      r-form-item(
+        label="输入框", 
+        prop="input",
+        required,
+        ref="myFormInput"
+      )
+        
+        r-input(
+          v-model="formItem.input",
+          placeholder="请输入",
+          trim
+        ) 
+      
+      r-form-item(label="选择器", prop="select", v-if="boool")
+        r-select(
+          v-model="formItem.select",
+          clearable,
+        )
+          r-select-option(label="北京市", value="0")
+          r-select-option(label="上海市", value="1")
+          r-select-option(label="深圳市", value="2")
+
+      r-form-item(label="日期控件")
+        r-row(align-items="center")
+          r-col(span="11")
+            r-form-item(prop="date")
+              r-datepicker(v-model="formItem.date", clearable)
+
+          r-col(span="2", style="text-align:center")
+            |-
+
+          r-col(span="11")
+            r-form-item(prop="time")
+              r-timepicker(v-model="formItem.time", clearable)
+      
+      r-form-item(label="单选框", prop="radio")
+        r-radio-group(v-model="formItem.radio")
+          r-radio(label="男", value="male")
+          r-radio(label="女", value="remale")
+      
+      r-form-item(label="多选框", prop="checkbox")
+        r-checkbox-group(v-model="formItem.checkbox")
+          r-checkbox(label="吃饭", value="吃饭")
+          r-checkbox(label="睡觉", value="睡觉")
+          r-checkbox(label="跑步", value="跑步")
+          r-checkbox(label="看电影", value="看电影")
+      
+      r-form-item(label="文本域")
+        r-input(
+          v-model="formItem.textarea",
+          type="textarea"
+        )
+      
+      r-form-item(label="异步验证", prop="ajaxValue")
+        r-input(
+          v-model="formItem.ajaxValue"
+        )
+
+      r-form-item(
+        v-for="(item, index) in formItem.tels.items",
+        :key="index",
+        :label="'电话' + (index + 1)",
+        :prop="'tels.items[' + index + '].value'",
+        :rules="[{validate: required, msg:'不能为空'}]"
+      )
+        r-row()
+          r-col(span="18")
+            r-input(
+              v-model="item.value"
+            )
+          r-col(span="4", offset="1")
+            r-button(
+              @click.native="delTel(item)"
+            )| 删除
+      
+      r-form-item(style="margin-left: 70px;")
+        r-button(
+          type="primary",
+          @click.native="addTel"
+        )| 添加电话
+      
+
+      r-form-item(prop="images", required, label="上传图片")
+        r-upload(
+          v-model="formItem.images",
+          action="//jsonplaceholder.typicode.com/posts/",
+          :on-success="onSuccess",
+          :on-error="onError",
+          list-type="image"
+        )
+          r-button(icon="ios-cloud-upload-outline")| 上传文件
+
+      r-form-item(style="margin-left: 70px;")
+        r-button(
+          @click.native="reset"
+        )| reset
+        r-button(
+          style="margin-left: 8px",
+          type="primary", 
+          @click.native="submit")| 提交
+</template>
+
+<script>
+import jsx from '../utils/jsx'
+
+var {div} = jsx
+
+export default {
+  data () {
+    return {
+      boool: true,
+      formItem: {
+        input: '',
+        select: '',
+        radio: '',
+        checkbox: [],
+        switch: true,
+        date: '',
+        time: '',
+        textarea: '',
+        tels: {
+          items: [{value:''}]
+        },
+        ajaxValue: '',
+        images: [],
+      },
+      ruleValidate: {
+        input: [
+          {
+            validate: this.required,
+            msg: '输入不能为空'
+          },
+          {
+            validate: function (value, callback){
+              if (/^\d+$/.test(value)){
+                callback(true)
+              }
+              else {
+                callback(false, '请输入数字')
+              }
+            }
+          }
+        ],
+        select: [
+          {
+            validate: this.required,
+            msg: '选择不能为空'
+          }
+        ],
+        radio: [
+          {
+            validate: this.required,
+            msg: 'radio不能为空'
+          }
+        ],
+        checkbox: [
+          {
+            validate: this.required,
+            msg: 'checkbox不能为空'
+          }
+        ],
+        date: [
+          {
+            validate: this.required,
+            msg: 'date不能为空'
+          }
+        ],
+        time: [
+          {
+            validate: this.required,
+            msg: 'time不能为空',
+          }
+        ],
+        ajaxValue: [
+          {
+            validate (value, callback) {
+              if (value.trim().length === 0){
+                callback(false, '不能为空')
+                return
+              }
+
+              setTimeout(_=>{
+                if (value == 'ajax'){
+                  callback(true)
+                }
+                else {
+                  callback(false)
+                }
+              }, 1000)
+            },
+            msg: '远程验证失败',
+            loadingMsg: '请求ing....',
+          }
+        ],
+        images: [
+          {
+            validate: this.required,
+            msg: '图片不能为空'
+          }
+        ]
+      }
+    }
+  },
+  methods: {
+    required (value, callback) {
+      jsx.h = this.$createElement
+      var {div, a} = jsx
+
+
+      if (value instanceof Array){
+        if (value.length > 0){
+          callback(true)
+        }
+        else {
+          callback(false, 
+            div(
+              '不能为空 ',
+              a({a_href:'https://baidu.com'}, '点击查看详情')
+            )
+          )
+        }
+      }
+      else {
+        if (value.length > 0){
+          callback(true)
+        }
+        else {
+          callback(false, 
+            div(
+              '不能为空 ',
+              a({a_href:'https://baidu.com'}, '点击查看详情')
+            )
+          )
+        }
+      }
+      
+    },
+
+    addTel () {
+      this.formItem.tels.items.push({
+        value: ''
+      })
+    },
+
+    delTel (item) {
+      var idx = this.formItem.tels.items.indexOf(item)
+      this.formItem.tels.items.splice(idx, 1)
+    },
+
+    submit () {
+      console.log(JSON.stringify(this.formItem))
+      this.$refs.myForm.validate( (_, errItem)=>{
+        console.log(_)
+        if (_ === false){
+          console.log(errItem)
+        }
+      })
+    },
+
+    reset () {
+      //- this.$refs.myForm.resetValidate()
+      this.$refs.myForm.reset()
+    },
+
+    onSuccess (res, file) {
+      this.formItem.images.push({
+        name: file.name,
+        url: res.id
+      })
+    },
+
+    onError () {
+      this.$message('上传图片失败', 'error')
+    }
+  }
+}
+</script>

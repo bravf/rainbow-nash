@@ -1,0 +1,262 @@
+<template lang="pug">
+div
+  div.panel
+    h3| select single
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select single clearable
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        clearable,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+          template(slot-scope="scope")
+            div| {{scope.data.label}}
+            div| 这是第 {{scope.index}} 项
+    
+    h3| select single filterable
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        filterable,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select single disabled
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        disabled,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select single small size
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        size="small",
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select single placeholder
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        placeholder="请选择城市",
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select single notFoundText
+    div.margin-10
+      r-select(
+        v-model="currCity",
+        style="width:300px",
+        not-found-text="无匹配城市",
+      )
+
+  //- multiple
+  div.panel
+    h3| select multiple
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple clearable
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        clearable,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple filterable
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        filterable,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple disabled
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        disabled,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple small size
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        size="small",
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple placeholder
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        placeholder="请选择城市",
+        clearable,
+      )
+        r-select-option(
+          v-for="city in cities",
+          :label="city.label",
+          :value="city.value",
+          :key="city.value",
+        )
+    
+    h3| select multiple notFoundText
+    div.margin-10
+      r-select(
+        v-model="currCities",
+        style="width:300px",
+        not-found-text="无匹配城市",
+      )
+
+  h3| select word-change
+  .margin-10
+    r-select(
+      v-model="currCities",
+      placeholder="远程搜索",
+      searchable,
+      @word-change="remoteSearch"
+    )
+      r-select-option(
+        v-for="city in remoteCities",
+        :label="city.label",
+        :value="city.value",
+        :key="city.value"
+      )
+
+  h3| select scopedSlots
+  .margin-10
+    r-select(
+      v-model="currCities",
+      placeholder="远程搜索",
+      searchable,
+    )
+      r-select-option(
+        v-for="city in cities",
+        :label="city.label",
+        :value="city.value",
+        :key="city.value"
+      )
+        template(slot-scope="scope")
+          div| 测试
+          div| {{scope.data.label + '[' + scope.index + ']'}}
+</template>
+
+<script>
+var cities = []
+for (var i=0; i<12; i++){
+  cities.push({
+    value: i,
+    label: '北京' + i,
+  })
+}
+export default {
+  data () {
+    return {
+      cities: cities,
+      currCity: -1,
+      currCities: [],
+      remoteCities: [],
+    }
+  },
+  methods: {
+    remoteSearch (val) {
+
+      setTimeout(_=>{
+        if (val == 'test'){
+          this.remoteCities = []
+          return
+        }
+        var cities = []
+        for (var i=0; i<10; i++){
+          cities.push({
+            value: val + i,
+            label: val + i.toString(),
+          })
+          this.remoteCities = cities
+        }
+      }, 100)
+    }
+  }
+}
+</script>

@@ -24,14 +24,14 @@ var App = {
 
     return rContainer('.r-app',
         rHeader(
-          ...this.$slots.header
+          ...(this.$slots.header || [])
         ),
         rContainer('.r-app-body',
           rAside({
             s_display: me.isAsideExpand ? 'block' : 'none',
             s_left: me.isAsideExpand
           },
-            ...this.$slots.aside
+            ...(this.$slots.aside || [])
           ),
           rMain(
             div('.r-aside-expand',{
@@ -46,7 +46,7 @@ var App = {
                 p_type: me.isAsideExpand ? 'chevron-left' : 'chevron-right'
               }),
             ),
-            ...this.$slots.main
+            ...(this.$slots.main || [])
           )
         )
       )

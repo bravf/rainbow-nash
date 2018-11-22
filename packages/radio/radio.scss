@@ -1,0 +1,53 @@
+@import '../scss/base';
+
+.r-radio{
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  cursor: pointer;
+
+  .r-radio-icon{
+    font-size: 18px;
+    
+    &:hover{
+      color: $color-primary;
+    }
+  }
+
+  .r-radio-content{
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  span{
+    vertical-align: middle;
+  }
+
+  *{
+    margin: 0 2px;
+  }
+}
+
+.r-radio-checked{
+  .r-radio-icon{
+    color: $color-primary;
+  }
+}
+
+.r-radio-disabled{
+  cursor: not-allowed;
+  // color: $color-gray-light;
+
+  .r-radio-icon{
+    color: $color-gray-light;
+    &:hover{
+      color: $color-gray-light;
+    }
+  }
+}
+
+.r-radio-group-vertical{
+  .r-radio{
+    display: block;
+  }
+}

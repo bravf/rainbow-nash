@@ -9,7 +9,7 @@ export default {
   name: 'RHeader',
   render (h){
     jsx.h = h
-    return div('.r-header', ...this.$slots.default)
+    return div('.r-header', ...(this.$slots.default || []) )
   }
 }
 </script>
