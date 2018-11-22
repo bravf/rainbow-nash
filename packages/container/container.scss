@@ -1,0 +1,29 @@
+@import '../scss/base';
+
+.r-container{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.r-container-vertical{
+  flex-direction: row;  
+}
+
+.r-aside{
+  margin-right: 5px;
+  padding: 10px 0;
+  background-color: $color-white;
+}
+
+.r-main{
+  flex: 1;
+  background-color: $color-white;
+  padding: 10px;
+}
+
+.r-header, .r-footer{
+  height: 60px;
+  background-color: $color-white;
+  padding: 0 10px;
+}

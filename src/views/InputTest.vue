@@ -1,0 +1,107 @@
+<template lang="pug">
+div
+  //- - type
+  div.panel
+    h3| type
+  
+    div.margin-10
+      r-input(value="text")
+    
+    div.margin-10
+      r-input(type="password", value="password")
+    
+    div.margin-10
+      r-input(type="textarea", v-model="textarea", rows="3", clearable)
+
+  //- v-model
+  div.panel
+    h3| v-model
+  
+    div.margin-10
+      r-input(v-model="text")
+      div| {{text}}
+
+  //- size
+  div.panel
+    h3| size
+  
+    div.margin-10
+      r-input(value="正常")
+    
+    div.margin-10
+      r-input(size="small", value="small")
+  
+  //- placeholder
+  div.panel
+    h3| placeholder
+  
+    div.margin-10
+      r-input(placeholder="请输入用户名...")
+  
+  //- disalbed
+  div.panel
+    h3| disabled
+
+    div.margin-10
+      r-input(value="disabled", disabled)
+  
+  //- readonly
+  div.panel
+    h3| readonly
+
+    div.margin-10
+      r-input(value="readonly", readonly)
+  
+  //- maxlength
+  div.panel
+    h3| maxlength
+
+    div.margin-10
+      r-input(value="0123456789", maxlength="10")
+  
+  //- icon
+  div.panel
+    h3| icon
+
+    div.margin-10
+      r-input(value="icon", icon="ios-clock-outline",
+      @click-icon="clickIcon")
+  
+  //- events
+  div.panel
+    h3| events
+
+    div.margin-10
+      r-input(value="change", @change="change")
+    
+    div.margin-10
+      r-input(value="focus", @focus="focus")
+    
+    div.margin-10
+      r-input(value="blur", @blur="blur")
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      text: 0,
+      textarea: 'textarea'
+    }
+  },
+  methods: {
+    clickIcon () {
+      console.log('click icon')
+    },
+    change (e) {
+      console.log(e)
+    },
+    focus () {
+      console.log('focus')
+    },
+    blur () {
+      console.log('blur')
+    }
+  }
+}
+</script>

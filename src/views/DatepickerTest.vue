@@ -1,0 +1,62 @@
+<template lang="pug">
+div
+  div.panel
+    h3| datepicker
+    div.margin-10
+      r-datepicker(
+        v-model="date",
+        placeholder="选择起飞时间",
+        clearable,
+        :disabled-date="disabledDate",
+        format="a",
+      )
+  
+  div.panel
+    h3| 开始时间
+    div.margin-10
+      r-datepicker(
+        v-model="startDate",
+        placeholder="开始时间",
+        clearable,
+        :disabled-date="disabledDate",
+        format="b",
+      )
+
+    h3| 结束时间（size=small）
+    div.margin-10
+      r-datepicker(
+        v-model="endDate",
+        placeholder="结束时间",
+        clearable,
+        :start-date="startDate",
+        format="c",
+        size="small",
+      )
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      date: '2018-05-03 12:12:12',
+      startDate: '',
+      endDate: '2018年05月03日',
+    }
+  },
+  watch: {
+    //- startDate () {
+    //-   this.endDate = ''
+    //- }
+  },
+  methods: {
+    disabledDate (date) {
+      // 禁用小于今天的时期
+      var today = new Date
+      return +date < +today
+    },
+    disabledDate2 (date) {
+      return +date < +(new Date(this.startDate + ' 23:59:59'))
+    }
+  }
+}
+</script>

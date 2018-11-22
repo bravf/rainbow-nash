@@ -1,0 +1,86 @@
+@import '../scss/base';
+
+.r-btn {
+  display: inline-block;
+  font: inherit;
+  height: $height;
+  line-height: $height;
+  padding: 0 15px;
+  color: $color-white;
+  white-space: nowrap;
+  text-align: center;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+  vertical-align: middle;
+  transition: all .2s;
+
+  span{
+    vertical-align: top;
+  }
+
+  &:hover{
+    opacity: .8;
+  }
+
+  &:active{
+    opacity: 1;
+    transition: none;
+  }
+
+  .r-button-icon{
+    margin: 0 3px;
+    font-size: 18px;
+    vertical-align: top;
+  }
+
+  .r-icon-only{
+    margin: 0;
+  }
+}
+
+.r-btn-primary{
+  border-color: $color-primary;
+  background-color: $color-primary;
+}
+
+.r-btn-success{
+  background-color: $color-success;
+  border-color: $color-success;
+}
+
+.r-btn-danger{
+  background-color: $color-danger;
+  border-color: $color-danger;
+}
+
+.r-btn-warning{
+  background-color: $color-warning;
+  border-color: $color-warning;
+}
+
+.r-btn-default{
+  background-color: $color-white;
+  color: $color-black-light;
+}
+
+.r-btn-disabled{
+  border-color: $color-border;
+  background-color: $color-white;
+  color: $color-gray-light;
+  cursor: not-allowed;
+}
+
+.r-btn-small, .r-btn-group-small .r-btn{
+  height: $minHeight;
+  line-height: $minHeight;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.r-btn-long{
+  display: block;
+  width: 100%;
+}
