@@ -23,16 +23,19 @@ $imageSize: 100px;
   
   .r-upload-list-file{
     padding: 4px;
-    display: flex;
-    align-items: center;
 
-    >span{
-      cursor: pointer;
-      display: inline-flex;
+    >div{
+      display: flex;
       align-items: center;
 
-      span{
-        margin-left: 4px;
+      >span{
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+  
+        span{
+          margin-left: 4px;
+        }
       }
     }
 

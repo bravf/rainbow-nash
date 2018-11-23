@@ -206,23 +206,25 @@ var Upload = {
       var me = this
 
       return li('.r-upload-list-file',
-        // name
-        span({
-          o_click () {
-            me.handlePreview(file)
-          }
-        },
-          rIcon({p_type: 'document'}),
-          span(file.name)
+        div(
+          // name
+          span({
+            o_click () {
+              me.handlePreview(file)
+            }
+          },
+            rIcon({p_type: 'document'}),
+            span(file.name)
+          ),
+          // remove
+          rIcon('.r-upload-list-remove', {
+            vif: this.removeable,
+            p_type: 'ios-close-empty',
+            no_click () {
+              me.handleRemove(file)
+            }
+          }),
         ),
-        // remove
-        rIcon('.r-upload-list-remove', {
-          vif: this.removeable,
-          p_type: 'ios-close-empty',
-          no_click () {
-            me.handleRemove(file)
-          }
-        }),
         // 进度条
         rProgress({
           vif: file.status === 'uploading',
