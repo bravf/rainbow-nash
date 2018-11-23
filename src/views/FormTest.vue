@@ -113,10 +113,6 @@ div.panel
 </template>
 
 <script>
-import jsx from '../utils/jsx'
-
-var {div} = jsx
-
 export default {
   data () {
     return {
@@ -215,9 +211,8 @@ export default {
   },
   methods: {
     required (value, callback) {
-      jsx.h = this.$createElement
-      var {div, a} = jsx
-
+      this.$jsx.h = this.$createElement
+      var {div, a} = this.$jsx
 
       if (value instanceof Array){
         if (value.length > 0){

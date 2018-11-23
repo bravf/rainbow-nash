@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import jsx from './utils/jsx'
 import Button from '../packages/button/button'
 import ButtonGroup from '../packages/button-group/button-group'
@@ -97,18 +98,17 @@ var components = [
   Modal,
 ]
 
-var install = (Vue) => {
+// auto install
+var install = () => {
   components.forEach(component => {
     Vue.component(component.name, component)
   }) 
-}
 
-if ( (typeof window !== 'undefined') && window.Vue) {
-  install(window.Vue)
+  Vue.prototype.$jsx = jsx
 }
+install()
+
 
 export default {
   version: '0.0.1',
-  install,
-  jsx,
 }
