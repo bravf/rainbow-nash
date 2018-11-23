@@ -1,29 +1,3 @@
-# rainbow-nash
+# Rainbow-nash
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Rainbow-nash 是一款极简单的基于 Vue2.x 的 PC 端的 UI 组件库，进入 [官网](https://bravf.github.io/rainbow-docs/pages/start.html) 了解详情。
