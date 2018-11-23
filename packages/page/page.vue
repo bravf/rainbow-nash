@@ -21,7 +21,10 @@ var Page = {
       type: Number,
       default: 0,
     },
-    size: String,
+    size: {
+      type: String,
+      default: 'small',
+    },
     showTotal: Boolean,
     pageSize: {
       type: Number,
@@ -60,6 +63,7 @@ var Page = {
       
         // 上一页
         rButton({
+          p_type: "success",
           p_disabled: this.value === 1 ? true : false,
           p_size: this.size,
           no_click () {
@@ -89,6 +93,7 @@ var Page = {
 
         // 下一页
         rButton({
+          p_type: "success",
           p_disabled: this.value >= pageTotal ? true : false,
           p_size: this.size,
           no_click () {

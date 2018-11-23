@@ -1,6 +1,8 @@
 @import '../scss/base';
 
 .r-select{
+  width: $width;
+
   &:hover{
     .r-select-selection{
       border-color: $color-primary;
@@ -74,7 +76,7 @@
   }
 
   .r-select-input-wrapper{
-    display: inline-block;
+    display: inline-flex;
     margin-right: 20px;
     vertical-align: middle;
     height: 22px;
@@ -137,7 +139,7 @@
 
   .r-select-option-selected{
     background-color: $color-blue-bg;
-    color: $color-info;
+    color: $color-white;
 
     &:hover{
       background-color: $color-blue-bg;

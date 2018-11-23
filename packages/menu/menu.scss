@@ -24,17 +24,17 @@
       align-items: center;
 
       >i{
-        margin-right: 6px;
+        margin-right: 10px;
       }
     }
 
     .r-sub-menu-title{
       >i{
-        margin-right: 6px;
+        margin-right: 10px;
       }
 
       .ion-ios-arrow-down, .ion-ios-arrow-up{
-        margin-left: 6px;
+        margin-left: 10px;
         margin-right: 0;
       }
     }
@@ -46,7 +46,7 @@
   }
 
   >.r-menu-item-active{
-    color: $color-info;
+    color: $color-primary;
     border-bottom-color: $color-info;
   }
 
@@ -82,11 +82,11 @@
 
     .r-menu-item-active{
       background-color: $color-blue-bg;
-      color: $color-info;
+      color: $color-white;
 
       &:hover{
         background-color: $color-blue-bg;
-        color: $color-info;
+        color: $color-white;
       }
     }
   }
@@ -115,13 +115,13 @@
       display: block;
 
       >i{
-        margin-right: 6px;
+        margin-right: 10px;
       }
     }
 
     .r-sub-menu-title{
       >i{
-        margin-right: 6px;
+        margin-right: 10px;
       }
     }
   }
@@ -177,14 +177,14 @@
 
   .r-menu-item-active{
     position: relative;
-    color: $color-info;
+    color: $color-white;
     border-color: $color-primary;
     background-color: $color-blue-bg;
     z-index: 2;
 
     &:hover{
       background-color: $color-blue-bg;
-      color: $color-info;
+      color: $color-white;
     }
   }
 }

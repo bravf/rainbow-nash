@@ -1,18 +1,18 @@
 // colors 
-$color-primary:             #409EFF;
+$color-primary:             #2486ff;
 $color-info:                #6089ec;
 
-$color-msg:                 #878d99;
-$color-success:             #67c23a;
-$color-warning:             #eb9e05;
-$color-danger:              #fa5555;
+$color-msg:                 #a2a9b6;
+$color-success:             #01cf97;
+$color-warning:             #f28c48;
+$color-danger:              #f4615c;
 
 $color-msg-bg:              #f3f4f5;
 $color-success-bg:          #f0f9eb;
 $color-warning-bg:          oldlace;
 $color-danger-bg:           #fee;
 
-$color-blue-bg:             #e6f7ff;
+$color-blue-bg:             #2486ff;
 
 $color-black:               #314659;
 $color-black-light:         #222222;
@@ -23,7 +23,7 @@ $color-silver-light-extra:  #AAAAAA;
 $color-gray:                #BBBBBB;
 $color-gray-light:          #CCCCCC;
 $color-gray-light-extra:    #DDDDDD;
-$color-white-dark:          #EEEEEE;
+$color-white-dark:          #eceef3;
 $color-white-light:         #FaFaFa;
 $color-white:               #FFFFFF;
 
@@ -34,13 +34,14 @@ $color-border-hover:        $color-gray;
 // 尺寸
 // 圆角
 $radius: 0;//2px;
-$font-size: 12px;
+$font-size: 14px;
 
 // 阴影
 $popup-shadow: 0 1px 6px rgba(0,0,0,.2);
 
 $height: 32px;
 $minHeight: 24px;
+$width: 200px;
 
 // mixin
 @mixin clear() {

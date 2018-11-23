@@ -33,17 +33,14 @@ div.panel
           r-select-option(label="深圳市", value="2")
 
       r-form-item(label="日期控件")
-        r-row(align-items="center")
-          r-col(span="11")
-            r-form-item(prop="date")
-              r-datepicker(v-model="formItem.date", clearable)
+        div(style="display:flex; align-items:baseline")
+          r-form-item(prop="date")
+            r-datepicker(v-model="formItem.date", clearable)
 
-          r-col(span="2", style="text-align:center")
-            |-
-
-          r-col(span="11")
-            r-form-item(prop="time")
-              r-timepicker(v-model="formItem.time", clearable)
+          span(style="flex-basis:50px;text-align:center") -
+          
+          r-form-item(prop="time")
+            r-timepicker(v-model="formItem.time", clearable)
       
       r-form-item(label="单选框", prop="radio")
         r-radio-group(v-model="formItem.radio")
@@ -76,12 +73,14 @@ div.panel
         :rules="[{validate: required, msg:'不能为空'}]"
       )
         r-row()
-          r-col(span="18")
+          r-col()
             r-input(
               v-model="item.value"
             )
-          r-col(span="4", offset="1")
+          r-col(offset="1")
             r-button(
+              type="danger",
+              size="small",
               @click.native="delTel(item)"
             )| 删除
       

@@ -5,7 +5,7 @@ div
     h3| type
   
     div.margin-10
-      r-input(value="text")
+      r-input(value="text", style="width:500px")
     
     div.margin-10
       r-input(type="password", value="password")

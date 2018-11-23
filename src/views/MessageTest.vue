@@ -2,20 +2,21 @@
 div.panel
   h3| message
   div.margin-10
-    r-button(
-      @click.native="$message('这是一条消息')"
-    )|消息
-    
-    r-button(
-      @click.native="$message('恭喜你，这是一条消息', 'success')"
-    )|成功
-    
-    r-button(
-      @click.native="$message('警告哦，这是一条警告消息', 'warning')"
-    )|警告
-    
-    r-button(
-      @click.native="$message('错了哦，这是一错误条消息哈哈真的错啦，测试是生死换死神寿司hi生或死Hi啊都是发打发打发打发打发打发打发打发奥德赛发的发的发的发好', 'error')"
-    )|错误
+    r-button-group
+      r-button(
+        @click.native="$message('这是一条消息')"
+      )|消息
+      
+      r-button(
+        @click.native="$message('恭喜你，这是一条消息', 'success')"
+      )|成功
+      
+      r-button(
+        @click.native="$message('警告哦，这是一条警告消息', 'warning')"
+      )|警告
+      
+      r-button(
+        @click.native="$message('错了哦，这是一错误条消息哈哈真的错啦，测试是生死换死神寿司hi生或死Hi啊都是发打发打发打发打发打发打发打发奥德赛发的发的发的发好', 'error')"
+      )|错误
 
 </template>

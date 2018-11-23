@@ -5,7 +5,7 @@ import ajax from './ajax'
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {div, span, ul, li, rIcon, rProgress, img, input} = jsx
+var {div, span, li, rIcon, rProgress, img, input} = jsx
 
 var Upload = {
   name: 'RUpload',
@@ -219,7 +219,7 @@ var Upload = {
         rIcon('.r-upload-list-remove', {
           vif: this.removeable,
           p_type: 'ios-close-empty',
-          no_click (e) {
+          no_click () {
             me.handleRemove(file)
           }
         }),
@@ -248,7 +248,7 @@ var Upload = {
         })
         :
         // 内容
-        div(
+        // div(
           img({
             a_src: file.url
           }),
@@ -267,7 +267,7 @@ var Upload = {
               }
             })
           )
-        )
+        // )
       )
     }
   },
@@ -309,7 +309,7 @@ var Upload = {
       ),
 
       // 列表
-      div('.r-upload-list', {vif: (this.value.length + this.tempFileList.length) > 0},
+      div(`.r-upload-list + r-upload-list${this.listType}`, {vif: (this.value.length + this.tempFileList.length) > 0},
         // finished list
         ...this.value.map(file => {
           return this[listFn](file)

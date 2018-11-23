@@ -6,7 +6,6 @@
   
   table{
     width: 100%;
-    border: 1px solid $color-border;
     border-collapse: collapse;
   }
 
@@ -17,16 +16,24 @@
   }
 
   th{
-    background-color: $color-white-light;
+    background-color: #f7f9fa;//$color-white-light;
     position: relative;
 
+    div{
+      display: inline-flex;
+      align-items: center;
+    }
+
     .r-table-sort{
-      position: relative;
-      margin-left: 4px;
+      margin-left: 10px;
       color: $color-gray;
 
+      display: inline-flex;
+      flex-direction: column;
+
       .r-icon{
-        position: absolute;
+        display: inline-flex;
+        flex-direction: column;
         font-size: 12px;
         cursor: pointer;
 
@@ -38,19 +45,12 @@
       .r-table-sort-active{
         color: $color-primary;
       }
-
-      .ion-arrow-up-b{
-        top: -4px;
-      }
-      .ion-arrow-down-b{
-        top: 5px;
-      }
     }
   }
 
   th, td{
     text-align: left;
-    height: 40px;
+    height: 46px;
     vertical-align: middle;
     border-bottom: 1px solid $color-border;
 
@@ -84,6 +84,8 @@
 }
 
 .r-table-border{
+  border: 1px solid $color-border;
+
   th, td{
     border-right: 1px solid $color-border;
   }

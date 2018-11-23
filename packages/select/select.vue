@@ -5,7 +5,7 @@ import {isArray, inArray, globalClick, getTextWidth} from '../../src/utils/tools
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {div, rTag, rIcon, ul ,li, rSelectOption, input} = jsx
+var {div, rTag, rIcon, ul ,li, input} = jsx
 
 var Select = {
   name: 'RSelect',
@@ -274,7 +274,7 @@ var Select = {
           idx = values.indexOf(this.value)
         }
 
-        this.$nextTick(_=>{
+        this.$nextTick(()=>{
           this._setScolltop(idx)
         })
       }
@@ -289,7 +289,7 @@ var Select = {
     }
   },
   mounted () {
-    globalClick(this.$el, _=>{
+    globalClick(this.$el, ()=>{
       this.isExpand = false
       this.word = null
     })
@@ -312,7 +312,6 @@ var Select = {
     else {
       placeholder = this.placeholder
 
-      var inputValue = ''
       if (me.word !== null){
         value = me.word
       }
@@ -343,7 +342,7 @@ var Select = {
             }
 
             if (me.filterable || me.searchable){
-              me.$nextTick(_=>{
+              me.$nextTick(()=>{
                 me.$refs.input.focus()
               })
             }
@@ -369,7 +368,7 @@ var Select = {
           // 输入框
           div('.r-select-input-wrapper', {
             s_width: (this.isMultiple && (selectedLabelValue.length > 0)) ? this._getInputWidth() + 'px' : '100%',
-            s_display: (this.isMultiple && (selectedLabelValue.length > 0) && !this.isExpand) ? 'none' : 'inline-block',
+            s_display: (this.isMultiple && (selectedLabelValue.length > 0) && !this.isExpand) ? 'none' : 'inline-flex',
           },
             input({
               a_type: 'text',

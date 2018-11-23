@@ -2,6 +2,7 @@
 
 .r-datepicker{
   position: relative;
+  width: $width;
   
   input{
     cursor: pointer;
@@ -90,11 +91,11 @@
 
     .r-datepicker-item-active{
       background-color: $color-blue-bg;
-      color: $color-info;
+      color: $color-white;
 
       &:hover{
         background-color: $color-blue-bg;
-        color: $color-info;
+        color: $color-white;
       }
     }
 

@@ -5,7 +5,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
       )
         r-select-option(
           v-for="city in cities",
@@ -18,7 +18,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         clearable,
       )
         r-select-option(
@@ -35,7 +35,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         filterable,
       )
         r-select-option(
@@ -49,7 +49,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         disabled,
       )
         r-select-option(
@@ -63,7 +63,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         size="small",
       )
         r-select-option(
@@ -77,7 +77,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         placeholder="请选择城市",
       )
         r-select-option(
@@ -91,7 +91,7 @@ div
     div.margin-10
       r-select(
         v-model="currCity",
-        style="width:300px",
+        
         not-found-text="无匹配城市",
       )
 
@@ -101,7 +101,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
       )
         r-select-option(
           v-for="city in cities",
@@ -114,7 +114,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         clearable,
       )
         r-select-option(
@@ -128,7 +128,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         filterable,
       )
         r-select-option(
@@ -142,7 +142,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         disabled,
       )
         r-select-option(
@@ -156,7 +156,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         size="small",
       )
         r-select-option(
@@ -170,7 +170,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         placeholder="请选择城市",
         clearable,
       )
@@ -185,7 +185,7 @@ div
     div.margin-10
       r-select(
         v-model="currCities",
-        style="width:300px",
+        
         not-found-text="无匹配城市",
       )
 

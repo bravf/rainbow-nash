@@ -2,6 +2,7 @@
 
 .r-timepicker{
   position: relative;
+  width: $width;
 
   input{
     cursor: pointer;
@@ -87,11 +88,11 @@
 
   .r-timepicker-item-active{
     background-color: $color-blue-bg;
-    color: $color-info;
+    color: $color-white;
 
     &:hover{
       background-color: $color-blue-bg;
-      color: $color-info;
+      color: $color-white;
     }
   }
 

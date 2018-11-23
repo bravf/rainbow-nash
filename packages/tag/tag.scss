@@ -1,7 +1,8 @@
 @import '../scss/base';
 
 .r-tag{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   height: 22px;
   line-height: 22px;
   margin: 2px 4px 2px 0;
@@ -12,12 +13,12 @@
   vertical-align: middle;
   opacity: 1;
   overflow: hidden;
+  font-size: 12px;
 
   .ion-ios-close-empty{
+    font-size: 20px;
     cursor: pointer;
     margin-left: 8px;
-    position: relative;
-    top: -1px;
   }
 }
 
@@ -31,10 +32,6 @@
 .r-tag-small{
   height: 16px;
   line-height: 16px;
-
-  .ion-ios-close-empty{
-    top: -2px;
-  }
 }
 
 .r-tag-primary{
@@ -50,7 +47,7 @@
 }
 
 .r-tag-info{
-  color: $color-msg;
+  color: $color-black;
   background-color: hsla(220,8%,56%,.1);
   border-color: hsla(220,8%,56%,.2);
 }

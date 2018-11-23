@@ -5,7 +5,7 @@ div.panel
     r-table(
       :data="data", 
       ref="table", 
-      :border="true", 
+      :border="false", 
       :show-header="true",
       :sort-method="sort",
       :sort-field="sortField",
@@ -62,15 +62,16 @@ div.panel
         v-if="test"
       )
         template(slot-scope="scope")
-          r-button(
-            type="primary",
-            size="small",
-            @click.native="_alert(scope.data.id)",
-            v-if="test"
-          )| 查看
-          r-button(
-            size="small"
-          )| 编辑
+          r-button-group(align="center")
+            r-button(
+              type="primary",
+              size="small",
+              @click.native="_alert(scope.data.id)",
+              v-if="test"
+            )| 查看
+            r-button(
+              size="small"
+            )| 编辑
     
     r-page(
       v-model="page.currPage",
