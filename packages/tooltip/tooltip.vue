@@ -2,8 +2,8 @@
 
 <script>
 import jsx from '../../src/utils/jsx'
-import Vue from 'vue'
 
+var thisVue
 var {div} = jsx
 
 var Tooltip = {
@@ -36,7 +36,8 @@ var Tooltip = {
         return
       }
 
-      this.popup = new RTooltipPopup({
+      var Ctor = thisVue.extend(TooltipPopup)
+      this.popup = new Ctor({
         data: {
           content: this.$slots.content,
           placement: this.placement,
@@ -80,12 +81,13 @@ var Tooltip = {
   },
   render (h) {
     return this.$slots.default[0]
-  }
+  },
+  use (Vue) {
+    thisVue = Vue
+  },
 }
 
-var RTooltipPopup = Vue.extend({
-  props: {
-  },
+var TooltipPopup = {
   data () {
     return {
       content: '',
@@ -180,7 +182,7 @@ var RTooltipPopup = Vue.extend({
       div('.r-tooltip-popup-inner', ...(this.content || []) )
     )
   }
-})
+}
 
 export default Tooltip
 </script>

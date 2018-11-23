@@ -1,7 +1,6 @@
 <style src="./message.scss" lang="scss"></style>
 
 <script>
-import Vue from 'vue'
 import jsx from '../../src/utils/jsx'
 
 var {div, span, rIcon} = jsx
@@ -88,33 +87,6 @@ var Message = {
     )
   }
 }
-
-var getMessage = function (){
-  var message = null
-
-  return function (){
-    if (message){
-      return message
-    }
-
-    var Ctor = Vue.extend(Message)
-    message = new Ctor
-
-    message.$mount(document.createElement('div'))
-    document.body.appendChild(message.$el)
-
-    return message
-  }
-}()
-
-Vue.mixin({
-  methods: {
-    $message (msg, type) {
-      var message = getMessage()
-      message.show(msg, type)
-    }
-  }
-})
 
 export default Message
 </script>

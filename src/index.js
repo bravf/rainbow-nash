@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import jsx from './utils/jsx'
 import Button from '../packages/button/button'
 import ButtonGroup from '../packages/button-group/button-group'
@@ -46,12 +45,14 @@ import Upload from '../packages/upload/upload'
 import Form from '../packages/form/form' 
 import FormItem from '../packages/form/form-item' 
 import Message from '../packages/message/message' 
+import MessageGlobal from '../packages/message/message-global'
 import Modal from '../packages/modal/modal'
+import ModalGlobal from '../packages/modal/modal-global'
 
 var components = [
+  Icon,
   Button,
   ButtonGroup,
-  Icon,
   Alert,
   App,
   Container,
@@ -99,16 +100,28 @@ var components = [
 ]
 
 // auto install
-var install = () => {
+var install = (Vue) => {
+  Tooltip.use(Vue)
+
+  MessageGlobal.use(Vue)
+  Vue.prototype.$message = MessageGlobal.message
+
+  ModalGlobal.use(Vue)
+  Vue.prototype.$alert = ModalGlobal.alert
+  Vue.prototype.$confirm = ModalGlobal.confirm
+
+  Vue.prototype.$jsx = jsx
+
   components.forEach(component => {
     Vue.component(component.name, component)
   }) 
-
-  Vue.prototype.$jsx = jsx
 }
-install()
 
+if (typeof window !== 'undefined' && window.Vue){
+  install(window.Vue)
+}
 
 export default {
-  version: '0.0.1',
+  version: '0.1.1',
+  install,
 }
