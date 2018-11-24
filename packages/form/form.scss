@@ -2,6 +2,7 @@
 
 .r-form{
   background-color: $color-white;
+  width: 600px;
 }
 
 .r-form-item{
@@ -46,6 +47,8 @@
 
 // inline
 .r-form-inline{
+  width: 100%;
+  
   .r-form-item-label{
     display: inline-block;
     padding-bottom: 10px;

@@ -98,12 +98,12 @@ var Upload = {
       })
     },
     post (file) {
-      this.handleStart(file)
+      var fakeFile = this.handleStart(file)
 
       var formData = new FormData
       formData.append(this.name, file)
 
-      ajax({
+      var xhr = ajax({
         headers: this.headers,
         withCredentials: this.withCredentials,
         file: file,
@@ -120,6 +120,8 @@ var Upload = {
           this.handleError(e, res, file)
         }
       })
+
+      fakeFile.xhr = xhr
     },
     handleStart (file) {
       file.uid = Date.now() + this.tempIndex ++
@@ -133,6 +135,7 @@ var Upload = {
       }
 
       this.tempFileList.push(_file)
+      return _file
     },
     getFile (file) {
       var tempFileList = this.tempFileList
@@ -153,11 +156,13 @@ var Upload = {
     handleProgress (e, file) {
       var _file = this.getFile(file)
       
-      if (this.onProgress){
-        this.onProgress(e, _file)
+      if (_file){
+        if (this.onProgress){
+          this.onProgress(e, _file)
+        }
+        
+        _file.percent = e.percent || 0
       }
-      
-      _file.percent = e.percent || 0
     },
     handleSuccess (res, file) {
       var tempFileList = this.tempFileList
@@ -178,18 +183,32 @@ var Upload = {
     },
     handleError (err, res, file) {
       var _file = this.getFile(file)
-      var tempFileList = this.tempFileList
 
-      _file.status = 'fail'
-      tempFileList.splice(tempFileList.indexOf(_file), 1)
-      
-      if (this.onError){
-        this.onError(err, res, file)
+      if (_file){
+        var tempFileList = this.tempFileList
+
+        _file.status = 'fail'
+        tempFileList.splice(tempFileList.indexOf(_file), 1)
+        
+        if (this.onError){
+          this.onError(err, res, file)
+        }
       }
     },
     handleRemove (file) {
-      var value = this.value
-      value.splice(value.indexOf(file), 1)
+      // 中断上传
+      if (file.xhr){
+        file.xhr.abort()
+      }
+
+      var fileList = this.value
+
+      // 如果是正在上传中
+      if (file.status === 'uploading'){
+        fileList = this.tempFileList
+      }
+      
+      fileList.splice(fileList.indexOf(file), 1)
 
       if (this.onRemove){
         this.onRemove(file)
