@@ -13,10 +13,16 @@
     &:hover{
       background-color: $color-white-light;
     }
+
+    &:last-child{
+      td{
+        border-bottom: 0;
+      }
+    }
   }
 
   th{
-    background-color: #f7f9fa;//$color-white-light;
+    background-color: #f7f9fa;
     position: relative;
 
     div{
@@ -88,5 +94,9 @@
 
   th, td{
     border-right: 1px solid $color-border;
+
+    &:last-child{
+      border-right: 0;
+    }
   }
 }

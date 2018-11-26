@@ -1,7 +1,9 @@
 @import '../scss/base';
 
 .r-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+
   font: inherit;
   height: $height;
   line-height: $height;
@@ -14,12 +16,7 @@
   cursor: pointer;
   outline: 0;
   -webkit-appearance: none;
-  vertical-align: middle;
   transition: all .2s;
-
-  span{
-    vertical-align: top;
-  }
 
   &:hover{
     opacity: .8;
@@ -33,7 +30,6 @@
   .r-button-icon{
     margin: 0 3px;
     font-size: 18px;
-    vertical-align: top;
   }
 
   .r-icon-only{

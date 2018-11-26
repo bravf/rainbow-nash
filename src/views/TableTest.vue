@@ -5,7 +5,7 @@ div.panel
     r-table(
       :data="data", 
       ref="table", 
-      :border="false", 
+      :border="true", 
       :show-header="true",
       :sort-method="sort",
       :sort-field="sortField",

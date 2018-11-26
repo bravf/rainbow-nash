@@ -1,6 +1,7 @@
 <script>
+import jsx from '../../src/utils/jsx'
 
-var {div, a, rIcon, rModal, rButton, p, span} = jsx
+var {div, rModal, rButton, p, rButtonGroup} = jsx
 
 var thisVue
 var $alert
@@ -47,6 +48,7 @@ var Alert = {
       p(this.content),
       div({slot:'footer'},
         rButton({
+          p_type: 'primary',
           no_click () {
             me.okClick()
           }
@@ -105,18 +107,19 @@ var Confirm = {
     },
       p(this.content),
       div({slot:'footer'},
-        rButton({
-          no_click () {
-            me.cancelClick()
-          }
-        }, '取消'),
-        span(' '),
-        rButton({
-          p_type: 'primary',
-          no_click () {
-            me.okClick()
-          }
-        }, '确定')
+        rButtonGroup({p_align:'right'},
+          rButton({
+            no_click () {
+              me.cancelClick()
+            }
+          }, '取消'),
+          rButton({
+            p_type: 'primary',
+            no_click () {
+              me.okClick()
+            }
+          }, '确定')
+        )
       )
     )
   }
