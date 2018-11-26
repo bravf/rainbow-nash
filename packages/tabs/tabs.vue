@@ -65,7 +65,7 @@ var Tabs = {
 
     return (
       div('.r-tabs',
-        ...this.$slots.default,
+        ...(this.$slots.default || []),
         // tabs-head
         div('.r-tabs-head',
           ...this.paneConfs.map( (conf, idx) => {

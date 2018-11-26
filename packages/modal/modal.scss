@@ -35,6 +35,10 @@
     .r-icon{
       font-size: 30px;
     }
+
+    &:hover{
+      color: $color-danger;
+    }
   }
 
   .r-modal-header{

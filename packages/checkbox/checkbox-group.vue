@@ -1,7 +1,6 @@
 <style src="./checkbox.scss" lang="scss"></style>
 
 <script>
-import {isArray, inArray} from '../../src/utils/tools'
 import jsx from '../../src/utils/jsx'
 
 var {div} = jsx
@@ -31,7 +30,8 @@ var CheckboxGroup = {
     },
   },
   render (h) {
-    return div('.' + this.cls.join('+'), ...this.$slots.default)
+    jsx.h = h
+    return div('.' + this.cls.join('+'), ...(this.$slots.default || []) )
   }
 }
 

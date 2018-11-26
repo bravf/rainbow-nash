@@ -58,12 +58,14 @@ var Page = {
     }
 
     return (
-      div('.r-page',
+      div('.r-page', {
+        vif: pageTotal > 1
+      },
         span('.r-page-total', {vif: this.showTotal}, `共 ${this.total} 条，${pageTotal} 页`),
       
         // 上一页
         rButton({
-          p_type: "success",
+          p_type: 'success',
           p_disabled: this.value === 1 ? true : false,
           p_size: this.size,
           no_click () {
@@ -93,7 +95,7 @@ var Page = {
 
         // 下一页
         rButton({
-          p_type: "success",
+          p_type: 'success',
           p_disabled: this.value >= pageTotal ? true : false,
           p_size: this.size,
           no_click () {

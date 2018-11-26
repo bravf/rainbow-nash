@@ -326,7 +326,7 @@ var Upload = {
           o_click () {
             me.handleClick()
           }
-        }, ...this.$slots.default),
+        }, ...(this.$slots.default || [])),
       ),
 
       // 列表

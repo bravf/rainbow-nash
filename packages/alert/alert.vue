@@ -34,7 +34,7 @@ var Alert = {
     return (
       div(`.r-alert + r-alert-${this.type}`, {vif:this.isShow},
         rIcon({p_type:iconList[this.type]}),
-        div('.r-alert-msg', ...this.$slots.default),
+        div('.r-alert-msg', ...(this.$slots.default || []) ),
         rIcon({
           vif:this.closeable, 
           p_type:'ios-close-empty',

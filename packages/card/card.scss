@@ -1,7 +1,9 @@
 @import '../scss/base';
 
+$card-head-height: 42px;
+
 .r-card{
-  margin: 10px 0;
+  margin: 15px 0;
   border: 1px solid $color-border;
   position: relative;
 }
@@ -13,19 +15,18 @@
 }
 
 .r-card-head{
-  position: relative;
-  height: $height;
-  line-height: $height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: $card-head-height;
   padding: 0 10px;
   border-bottom: 1px solid $color-border;
+  color: $color-success;
+  font-weight: bold;
 }
 
 .r-card-extra{
-  position: absolute;
-  right: 10px;
-  top: 0;
-  height: $height;
-  line-height: $height;
 }
 
 .r-card-body{

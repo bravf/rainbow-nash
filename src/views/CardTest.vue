@@ -1,6 +1,6 @@
 <template lang="pug">
 r-card(
-  style="margin: 10px; width:200px;"
+  style="margin: 10px; width:500px;"
   title="你好"
 )
   p(slot="title")
