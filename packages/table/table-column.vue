@@ -7,7 +7,7 @@ var TableColumn = {
       default: '#',
     },
     field: String,
-    // index, checkbox, radio
+    // index, checkbox, radio, expand
     type: String,
     width: [Number, String],
     align: {

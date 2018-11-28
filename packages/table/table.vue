@@ -1,7 +1,6 @@
 <style src="./table.scss" lang="scss"></style>
 
 <script>
-import {isArray} from '../../src/utils/tools'
 import {getPropByPath} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
@@ -141,6 +140,24 @@ var Table = {
         )
       )
     },
+    _renderExpandRow (conf, data, dataIdx) {
+      jsx.h = this.$createElement
+      var tdContent = ''
+      if (conf.scopeSlot){
+        tdContent = conf.scopeSlot({
+          data: data,
+          index: dataIdx
+        })
+      }
+
+      return tr('.r-table-expand-row',
+        td({
+          a_colspan: this.columnConfs.length
+        },
+          tdContent
+        )
+      )
+    },
     _renderTbody () {
       var me = this
       var columnConfs = this.columnConfs
@@ -150,6 +167,112 @@ var Table = {
         dataSource = []
       }
 
+      // 所有行
+      var trs = []
+      var expandConf
+      
+      dataSource.map( (data, dataIdx) => {
+        var isExpandRow = false
+
+        trs.push(
+          tr({
+            o_click (e) {
+              me.$emit('row-click', data, e)
+            }
+          },
+          // 列 start
+          ...columnConfs.map(conf => {
+            var tdContent
+
+            if (conf.field){
+              tdContent = span(getPropByPath(data, conf.field).get())
+            }
+
+            if (conf.type === 'index'){
+              tdContent = span(dataIdx + 1)
+            }
+            else if (conf.type === 'expand'){
+              tdContent = rIcon('.r-table-expand-switch', {
+                p_type: data.__expand ? 'arrow-down-b' : 'arrow-right-b',
+                s_cursor: 'pointer',
+                no_click (e) {
+                  data.__expand = !data.__expand
+                  me.renderHook ++
+                  e.stopPropagation()
+                }
+              })
+
+              expandConf = conf
+              if (data.__expand){
+                isExpandRow = true
+              }
+            }
+            else if (conf.type === 'checkbox'){
+              tdContent = rCheckbox('.r-table-checkbox', {
+                p_checkedValue: data.__checked === true,
+                o_input (value) {
+                  if (value === true){
+                    data.__checked = true
+                  }
+                  else {
+                    data.__checked = false
+                  }
+
+                  me.$emit('check-change', data)
+                  me.renderHook ++
+                },
+                no_click (e) {
+                  e.stopPropagation()
+                }
+              })
+            }
+            else if (conf.type === 'radio') {
+              tdContent = rRadio('.r-table-radio', {
+                p_checkedValue: data.__checked === true,
+                o_input () {
+                  if (data.__checked !== true){
+                    data.__checked = true
+                  }
+                  else {
+                    data.__checked = false
+                  }
+
+                  if (me.radioData && (me.radioData != data) ){
+                    me.radioData.__checked = false
+                  }
+
+                  me.radioData = data
+
+                  me.$emit('check-change', data)
+                  me.renderHook ++
+                },
+                no_click (e) {
+                  e.stopPropagation()
+                }
+              })
+            }
+            else {
+              if (conf.scopeSlot){
+                tdContent = conf.scopeSlot({
+                  data: data,
+                  index: dataIdx
+                })
+              }
+            }
+
+            return this._renderTd(conf, tdContent)
+          })
+          // 列 end
+          )
+        )
+
+        if (isExpandRow){
+          trs.push(
+            me._renderExpandRow(expandConf, data, dataIdx)
+          )
+        }
+      })
+
       return (
         tbody(
           tr({vif: !dataSource.length, 'c_no-data-text': true},
@@ -157,81 +280,7 @@ var Table = {
               div(this.noDataText)
             )
           ),
-          ...dataSource.map( (data, dataIdx) => {
-            return tr({
-              o_click (e) {
-                me.$emit('row-click', data, e)
-              }
-            },
-            // 列 start
-            ...columnConfs.map(conf => {
-              var tdContent
-
-              if (conf.field){
-                tdContent = span(getPropByPath(data, conf.field).get())
-              }
-
-              if (conf.type === 'index'){
-                tdContent = span(dataIdx + 1)
-              }
-              else if (conf.type === 'checkbox'){
-                tdContent = rCheckbox('.r-table-checkbox', {
-                  p_checkedValue: data.__checked === true,
-                  o_input (value) {
-                    if (value === true){
-                      data.__checked = true
-                    }
-                    else {
-                      data.__checked = false
-                    }
-
-                    me.$emit('check-change', data)
-                    me.renderHook ++
-                  },
-                  no_click (e) {
-                    e.stopPropagation()
-                  }
-                })
-              }
-              else if (conf.type === 'radio') {
-                tdContent = rRadio('.r-table-radio', {
-                  p_checkedValue: data.__checked === true,
-                  o_input (value) {
-                    if (data.__checked !== true){
-                      data.__checked = true
-                    }
-                    else {
-                      data.__checked = false
-                    }
-
-                    if (me.radioData && (me.radioData != data) ){
-                      me.radioData.__checked = false
-                    }
-
-                    me.radioData = data
-
-                    me.$emit('check-change', data)
-                    me.renderHook ++
-                  },
-                  no_click (e) {
-                    e.stopPropagation()
-                  }
-                })
-              }
-              else {
-                if (conf.scopeSlot){
-                  tdContent = conf.scopeSlot({
-                    data: data,
-                    index: dataIdx
-                  })
-                }
-              }
-
-              return this._renderTd(conf, tdContent)
-            })
-            // 列 end
-            )
-          }),
+          ...trs,
           this._renderSummary()
         )
       )

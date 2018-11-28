@@ -3,6 +3,7 @@
 .r-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 
   font: inherit;
   height: $height;
@@ -77,6 +78,6 @@
 }
 
 .r-btn-long{
-  display: block;
+  display: flex;
   width: 100%;
 }

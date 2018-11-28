@@ -30,8 +30,8 @@ var jsx = {
       var second = params[1]
       var i = 1
 
-      // 如果第二个参数是 prorps
-      if ( (second !== null) && (typeof second === 'object') && (!('componentInstance' in second)) ){
+      // 如果第二个参数是 props
+      if ( (Object.prototype.toString.call(second).slice(8, -1) === 'Object') && !('componentInstance' in second) ){
         // 如果有vif===false，直接返回null
         if (second['vif'] === false){
           return null
@@ -58,7 +58,7 @@ var jsx = {
         
         i = 2
       }
-      
+
       node.children.push(...params.slice(i))
     }
 

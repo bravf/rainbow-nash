@@ -5,7 +5,7 @@ div.panel
     r-table(
       :data="data", 
       ref="table", 
-      :border="true", 
+      :border="false", 
       :show-header="true",
       :sort-method="sort",
       :sort-field="sortField",
@@ -17,10 +17,17 @@ div.panel
       :show-summary="true",
       summary-text="总和",
     )
-      
       r-table-column(
         width="50",
-        type="checkbox",
+        type="expand",
+        align="center"
+      )
+        template(slot-scope="scope")
+          div {{scope.data.name}}
+
+      r-table-column(
+        width="50",
+        type="radio",
       )
       r-table-column(
         width="50",
