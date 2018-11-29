@@ -386,7 +386,7 @@ var Table = {
         s_width: this.width + 'px'
       },
         table(
-          ...this.$slots.default,
+          ...(this.$slots.default || []) ,
           this._renderColgroup(),
           this.showHeader ? this._renderThead() : null,
           this._renderTbody(),

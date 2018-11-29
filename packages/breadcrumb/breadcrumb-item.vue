@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {div, span, a} = jsx
+var {span, a} = jsx
 
 var BreadcrumbItem = {
   name: 'RBreadcrumbItem',
@@ -14,8 +14,12 @@ var BreadcrumbItem = {
   render (h) {
     jsx.h = h
     return this.href ?
-      a('.r-breadcrumb-item-a', { a_href: this.href, a_target: this.target,}, ...this.$slots.default) :
-      span('.r-breadcrumb-item-span', ...this.$slots.default)
+      a('.r-breadcrumb-item-a', {
+        a_href: this.href, 
+        a_target: this.target,
+      }, ...(this.$slots.default || []) ) 
+      :
+      span('.r-breadcrumb-item-span', ...(this.$slots.default || []) )
   }
 }
 

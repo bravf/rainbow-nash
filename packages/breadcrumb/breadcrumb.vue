@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {div, span, a} = jsx
+var {div, span} = jsx
 
 var Breadcrumb = {
   name: 'RBreadcrumb',
@@ -28,7 +28,7 @@ var Breadcrumb = {
       }
     })
 
-    return div('.r-breadcrumb', ...nodes)
+    return div('.r-breadcrumb', ...(nodes || []) )
   }
 }
 

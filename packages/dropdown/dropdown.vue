@@ -4,7 +4,7 @@
 import {globalClick} from '../../src/utils/tools'
 import jsx from '../../src/utils/jsx'
 
-var {a, rIcon, div, ul, li} = jsx
+var {a, rIcon, div, ul} = jsx
 
 var Dropdown = {
   name: 'RDropdown',
@@ -46,13 +46,13 @@ var Dropdown = {
         ),
         // list
         div(`.r-dropdown-list + r-dropdown-list-${this.placement}`, {s_display: this.isExpand ? 'block' : 'none'},
-          ul(...this.$slots.default)
+          ul(...(this.$slots.default || []) )
         )
       )
     )
   },
   mounted () {
-    globalClick(this.$el, _=>{
+    globalClick(this.$el, ()=>{
       this.isExpand = false
     })
   }

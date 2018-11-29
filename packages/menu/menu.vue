@@ -1,11 +1,9 @@
 <style src="./menu.scss" lang="scss"></style>
 
 <script>
-import {globalClick} from '../../src/utils/tools'
-import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {div, ul, li, a, rIcon} = jsx
+var {ul} = jsx
 
 var Menu = {
   name: 'RMenu',
@@ -30,9 +28,8 @@ var Menu = {
   },
   render (h) {
     jsx.h = h
-    var me = this
 
-    return ul('.' + this.cls.join('+'), ...this.$slots.default)
+    return ul('.' + this.cls.join('+'), ...(this.$slots.default || []) )
   },
 }
 

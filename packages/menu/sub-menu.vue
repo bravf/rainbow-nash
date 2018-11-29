@@ -60,7 +60,7 @@ var SubMenu = {
           }
         }
       }, 
-        ...this.$slots.title,
+        ...(this.$slots.title || []),
         rIcon({
           p_type: this.isExpand ? 'ios-arrow-up' : 'ios-arrow-down'
         })
@@ -82,7 +82,7 @@ var SubMenu = {
   mounted () {
     // 如果水平，则点击隐藏
     if (this.menu.mode === 'horizontal'){
-      globalClick(this.$el, _=>{
+      globalClick(this.$el, ()=>{
         this.isExpand = false
       })
     }

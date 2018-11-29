@@ -6,7 +6,7 @@ div
     div.margin-10
       r-page(
         v-model="currPage",
-        :total="total",
+        :total="1",
         :show-total="true",
         size="default",
         @change="pageChange"

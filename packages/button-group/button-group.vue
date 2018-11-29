@@ -27,7 +27,7 @@ var ButtonGroup = {
   },
   render (h) {
     jsx.h = h
-    return div('.' + this.cls.join('+'), {'s_text-align':this.align}, ...this.$slots.default)
+    return div('.' + this.cls.join('+'), {'s_text-align':this.align}, ...(this.$slots.default || []) )
   }
 }
 

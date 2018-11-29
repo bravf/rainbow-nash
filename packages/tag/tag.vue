@@ -42,7 +42,7 @@ var Tag = {
     var me = this
 
     return div('.' + this.cls.join('+'),
-      span('.r-tag-text', ...this.$slots.default),
+      span('.r-tag-text', ...(this.$slots.default || []) ),
 
       rIcon({
         vif: !!this.closeable,

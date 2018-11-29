@@ -1,10 +1,9 @@
 <style src="./dropdown.scss" lang="scss"></style>
 
 <script>
-import {globalClick} from '../../src/utils/tools'
 import jsx from '../../src/utils/jsx'
 
-var {a, rIcon, div, ul, li} = jsx
+var {a, li} = jsx
 
 var DropdownItem = {
   name: 'RDropdownItem',
@@ -25,7 +24,7 @@ var DropdownItem = {
         a({
           a_href: this.href,
           a_target: this.target ? this.target : null
-        }, ...this.$slots.default)
+        }, ...(this.$slots.default || []) )
       )
     )
   }
