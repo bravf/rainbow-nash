@@ -34,7 +34,8 @@ var Tabs = {
         }
 
         var conf = {
-          slot: instance.$slots.default
+          slotLabel: instance.$slots.label,
+          slotContent: instance.$slots.default,
         }
 
         propList.forEach(prop=>{
@@ -69,14 +70,25 @@ var Tabs = {
         // tabs-head
         div('.r-tabs-head',
           ...this.paneConfs.map( (conf, idx) => {
+            var $label
+
+            if (conf.slotLabel){
+              $label = conf.slotLabel
+            }
+            else {
+              $label = [
+                rIcon({vif: conf.icon, p_type: conf.icon}),
+                conf.label,
+              ]
+            }
+
             return div('.r-tabs-tab', {
               'c_r-tabs-tab-active': activeIdx === idx,
               o_click () {
                 me.$emit('input', conf.name) 
               }
             },
-              rIcon({vif: conf.icon, p_type: conf.icon}),
-              conf.label
+            ...$label,
             )
           })
         ),
@@ -84,7 +96,7 @@ var Tabs = {
         ...this.paneConfs.map( (conf, idx) => {
           return div('.r-tabs-pane', {
             s_display: activeIdx === idx ? 'block' : 'none'
-          }, ...(conf.slot || []) )
+          }, ...(conf.slotContent || []) )
         })
       )
     )

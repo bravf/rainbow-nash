@@ -5,6 +5,10 @@ r-tabs(style="margin:10px;", v-model="tabsValue")
     label="macOS",
     icon="social-apple"
   )
+    span(slot="label", style="display:inline-flex")
+      r-icon(type="social-apple")
+      span haha
+
     div| macOS
     r-input(v-model="input")
     div {{input}}
