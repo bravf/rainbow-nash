@@ -7,7 +7,6 @@
 
   font: inherit;
   height: $height;
-  line-height: $height;
   padding: 0 15px;
   color: $color-white;
   white-space: nowrap;
@@ -20,7 +19,7 @@
   transition: all .2s;
 
   &:hover{
-    opacity: .8;
+    opacity: .6;
   }
 
   &:active{
@@ -30,7 +29,6 @@
 
   .r-button-icon{
     margin: 0 3px;
-    font-size: 18px;
   }
 
   .r-icon-only{
@@ -80,4 +78,14 @@
 .r-btn-long{
   display: flex;
   width: 100%;
+}
+
+.r-btn-group{
+  display: flex;
+}
+.r-btn-group-align-center{
+  justify-content: center;
+}
+.r-btn-group-align-right{
+  justify-content: flex-end;
 }

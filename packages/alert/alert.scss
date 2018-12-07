@@ -1,22 +1,26 @@
 @import '../scss/base';
 
 .r-alert{
-  position: relative;
+  display: flex;
+  align-items: baseline;
   padding: 10px 20px;
   margin: 10px 0;
 
   .r-icon{
-    position: absolute;
-    top: 10px;
+    flex-shrink: 0;
   }
   .r-alert-msg{
-    margin-left: 20px;
+    flex-grow: 1;
+    margin-left: 10px;
   }
   .ion-ios-close-empty{
     color: $color-msg;
-    right: 20px;
-    font-size: 18px;
+    font-size: 30px;
     cursor: pointer;
+
+    &:hover{
+      color: $color-danger;
+    }
   }
 }
 

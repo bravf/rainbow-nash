@@ -16,7 +16,7 @@ var ButtonGroup = {
   },
   computed: {
     cls () {
-      var cls = ['r-btn-group']
+      var cls = ['r-btn-group', 'r-btn-group-align-' + this.align]
       
       if (this.size === 'small'){
         cls.push('r-btn-group-small')
@@ -27,7 +27,7 @@ var ButtonGroup = {
   },
   render (h) {
     jsx.h = h
-    return div('.' + this.cls.join('+'), {'s_text-align':this.align}, ...(this.$slots.default || []) )
+    return div('.' + this.cls.join('+'), ...(this.$slots.default || []) )
   }
 }
 

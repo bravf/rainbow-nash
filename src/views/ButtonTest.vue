@@ -20,8 +20,10 @@
       r-button(html-type="reset")| reset按钮
     
     div.margin-10
-      r-button(icon="plus-round")| 添加
-      r-button(icon="heart")
+      r-button-group
+        r-button(icon="plus-round")| 添加
+        r-button(icon="plus-round", icon-pos="after")| 添加
+        r-button(icon="heart")
     
     div.margin-10
       r-button(:loading="true")| 新增
