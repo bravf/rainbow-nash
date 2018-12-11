@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {button, span, rIcon} = jsx
+var {button, a, rIcon} = jsx
 
 var Button = {
   name: 'RButton',
@@ -27,7 +27,15 @@ var Button = {
     iconPos: {
       type: String,
       default: 'before'
-    }
+    },
+
+    // 模拟 a 链接
+    href: String,
+    target: {
+      type: String,
+      default: '_blank',
+    },
+
   },
   computed: {
     cls () {
@@ -52,15 +60,25 @@ var Button = {
   render (h) {
     jsx.h = h
 
+    var node
     var props = {}
-    props['dp_type'] = this.htmlType
+
+    if (this.href){
+      node = a
+      props['dp_href'] = this.href
+      props['dp_target'] = this.target
+    }
+    else {
+      node = button
+      props['dp_type'] = this.htmlType
+    }
 
     if (this.disabled || this.loading){
       props['dp_disabled'] = 'disabled'
     }
 
     // 文本
-    var $txt = span(...(this.$slots.default || []))
+    var $txt = this.$slots.default || []
 
     // 图标
     var icon = this.icon
@@ -76,8 +94,8 @@ var Button = {
     }
 
     return (
-      button(`.r-btn + ${this.cls.join('+')}`, props,
-        ...(this.iconPos === 'after' ? [$txt, $icon] : [$icon, $txt])
+      node(`.r-btn + ${this.cls.join('+')}`, props,
+        ...(this.iconPos === 'after' ? [...$txt, $icon] : [$icon, ...$txt])
       )
     )
   }

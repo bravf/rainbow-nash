@@ -1,12 +1,14 @@
 <template lang="pug">
   div
     div.margin-10
-      r-button(type="primary")| 原始按钮
-      r-button(type="default")| 默认按钮
-      r-button(type="success")| 成功按钮
-      r-button(type="danger")| 失败按钮
-      r-button(type="warning")| 警告按钮
-      r-button(:disabled="true")| 禁用按钮
+      r-button-group
+        r-button(type="primary")| 原始按钮
+        r-button(type="default")| 默认按钮
+        r-button(type="success")| 成功按钮
+        r-button(type="danger")| 失败按钮
+        r-button(type="warning")| 警告按钮
+        r-button(:disabled="true")| 禁用按钮
+        r-button(icon="plus-round", href="https://baidu.com")| 这是一个链接按钮
     
     div.margin-10
       r-button()| 默认按钮
