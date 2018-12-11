@@ -1,6 +1,6 @@
 {
   "name": "rainbow-nash",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "dist/rainbow-nash.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
