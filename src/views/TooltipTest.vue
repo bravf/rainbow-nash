@@ -51,6 +51,13 @@ div.panel(style="padding-left: 400px;")
   
   div.margin-10
     r-tooltip(:content="tip", placement="right-end")
+      div(slot="content")
+        r-button-group(style="background:#fff; padding: 10px;")
+          r-button| hello
+          r-button| world
+          r-button| bye bye
+          r-button(type="primary")| gogogo~
+
       r-button(title="tip")| right-end
 </template>
 

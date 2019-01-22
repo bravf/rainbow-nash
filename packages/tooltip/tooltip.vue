@@ -23,10 +23,10 @@ var Tooltip = {
   },
   mounted () {
     // 绑定鼠标事件
-    this.$el.addEventListener('mouseenter', _=>{
+    this.$el.addEventListener('mouseenter', ()=>{
       this._showPopup()
     })
-    this.$el.addEventListener('mouseleave', _=>{
+    this.$el.addEventListener('mouseleave', ()=>{
       this._hidePopup()
     })
   },
@@ -47,10 +47,10 @@ var Tooltip = {
       this.popup.$mount(document.createElement('div'))
       document.body.appendChild(this.popup.$el)
   
-      this.popup.$el.addEventListener('mouseenter', _=>{
+      this.popup.$el.addEventListener('mouseenter', ()=>{
         this._showPopup()
       })
-      this.popup.$el.addEventListener('mouseleave', _=>{
+      this.popup.$el.addEventListener('mouseleave', ()=>{
         this._hidePopup()
       })
     },
@@ -103,9 +103,11 @@ var TooltipPopup = {
       if (this.isShow){
         return
       }
+      this.isShow = true
       this.setPosition()
     },
     hide () {
+      this.isShow = false
       this.top = this.left = -1000
     },
     setPosition () {

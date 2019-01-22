@@ -1,7 +1,6 @@
 @import '../scss/base';
 
 .r-tooltip-popup{
-  transition: all 0s;
   position: absolute;
   display: block;
   top: 300px;
@@ -14,8 +13,8 @@
 
   .r-tooltip-popup-inner{
     padding: 5px 10px;
-    border: 1px solid $color-border;
-    background-color: $color-white-dark;
+    background-color: $color-black;
+    color: $color-white;
     height: 100%;
   }
 }
