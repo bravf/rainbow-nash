@@ -1,6 +1,6 @@
 {
   "name": "rainbow-nash",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "main": "dist/rainbow-nash.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,8 +12,10 @@
     "url": "https://github.com/bravf/rainbow-nash"
   },
   "dependencies": {
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue": "^2.6.6",
+    "vue-jsx": "^0.2.6",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.6.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
