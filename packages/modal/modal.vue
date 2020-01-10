@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {div, a, rIcon, rModal, rButton, p, span} = jsx
+var {div, a, rIcon} = jsx
 
 // modal的zindex从1000开始递增
 var zindex = 1000

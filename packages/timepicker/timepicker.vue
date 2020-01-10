@@ -211,7 +211,7 @@ var Timepicker = {
       if (!$dom){
         return
       }
-      setTimeout(_=>{
+      setTimeout(()=>{
         $dom.scrollTop = parseInt(this[type]) * 32
       })
     }

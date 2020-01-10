@@ -5,7 +5,7 @@ import {isArray, inArray} from '../../src/utils/tools'
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {label, rIcon, span ,div} = jsx
+var {label, rIcon, span} = jsx
 
 var Checkbox = {
   name: 'RCheckbox',

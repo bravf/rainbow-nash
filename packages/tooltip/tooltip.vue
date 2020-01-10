@@ -60,14 +60,14 @@ var Tooltip = {
       this._createPopup()
       this._setPopupContent()
 
-      this.$nextTick(_=>{
+      this.$nextTick(()=>{
         this.popup.show()
       })
     },
     _hidePopup () {
       clearTimeout(this.hideTimer)
 
-      this.hideTimer = setTimeout(_ => {
+      this.hideTimer = setTimeout(() => {
         this.popup.hide()
       }, 10)
     },
@@ -79,7 +79,7 @@ var Tooltip = {
       this.popup.content = this.$slots.content || [this.content] || ['']
     }
   },
-  render (h) {
+  render () {
     return this.$slots.default[0]
   },
   use (Vue) {

@@ -1,11 +1,10 @@
 <style src="./form.scss" lang="scss"></style>
 
 <script>
-import {isObject, isArray, deepClone, isVueNodeType} from '../../src/utils/tools'
-import {getParent, getPropByPath} from '../../src/utils/instance'
+import {isObject, deepClone, isVueNodeType} from '../../src/utils/tools'
 import jsx from '../../src/utils/jsx'
 
-var {form, div, label} = jsx
+var {form} = jsx
 
 var Form = {
   name: 'RForm',
@@ -125,14 +124,13 @@ var Form = {
 
     reset () {
       this.resetModel()
-      setTimeout(_=>{
+      setTimeout(()=>{
         this.resetValidate()
       })
     }
   },
   render (h) {
     jsx.h = h
-    var me = this
 
     return form('.' + this.cls.join('+'), ...(this.$slots.default || []) )
   },

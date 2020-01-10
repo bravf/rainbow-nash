@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {label, rIcon, div, span} = jsx
+var {div} = jsx
 
 var RadioGroup = {
   name: 'RRadioGroup',

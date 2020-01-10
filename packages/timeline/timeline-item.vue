@@ -3,7 +3,7 @@
 <script>
 import jsx from '../../src/utils/jsx'
 
-var {div, ul, li} = jsx
+var {div, li} = jsx
 
 var TimelineItem = {
   name: 'RTimelineItem',

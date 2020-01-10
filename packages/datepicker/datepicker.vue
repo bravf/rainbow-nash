@@ -1,7 +1,7 @@
 <style src="./datepicker.scss" lang="scss"></style>
 
 <script>
-import {isArray, globalClick, paddingZero} from '../../src/utils/tools'
+import {globalClick, paddingZero} from '../../src/utils/tools'
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
@@ -162,7 +162,7 @@ var Datepicker = {
       var todayDate = new Date
 
       // 输出本月
-      for (var i=0; i<dayCount; i++){
+      for (let i=0; i<dayCount; i++){
         var cls = ['r-datepicker-item']
 
         // 如果是当前选中日期
@@ -188,7 +188,7 @@ var Datepicker = {
       }
 
       // 补足下个月
-      for (var i=0; i<42-dayCount-firstDay; i++){
+      for (let i=0; i<42-dayCount-firstDay; i++){
         cells.push({
           year: nextMonth.year,
           month: nextMonth.month,
@@ -327,7 +327,7 @@ var Datepicker = {
     )
   },
   mounted () {
-    globalClick(this.$el, _=>{
+    globalClick(this.$el, ()=>{
       this.isExpand = false
     })
   },

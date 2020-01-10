@@ -1,11 +1,10 @@
 <style src="./form.scss" lang="scss"></style>
 
 <script>
-import {isObject, isArray, deepClone} from '../../src/utils/tools'
 import {getParent, getPropByPath} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {form, div, label} = jsx
+var {div, label} = jsx
 
 var FormItem = {
   name: 'RFormItem',
@@ -102,7 +101,6 @@ var FormItem = {
   },
   render (h) {
     jsx.h = h
-    var me = this
 
     return div('.' + this.cls.join('+'),
       label('.r-form-item-label', {vif: !!this.label, s_width:!this.inline ? this.labelWidth + 'px' : 'auto'}, this.label),

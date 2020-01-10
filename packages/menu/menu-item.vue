@@ -4,7 +4,7 @@
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {div, ul, li, a, rIcon} = jsx
+var {li, a} = jsx
 
 
 var MenuItem = {

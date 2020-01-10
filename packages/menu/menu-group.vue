@@ -12,7 +12,6 @@ var MenuGroup = {
   },
   render (h) {
     jsx.h = h
-    var me = this
 
     return li('.r-menu-group',
       div('.r-menu-group-title', this.title),

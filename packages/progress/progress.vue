@@ -56,9 +56,7 @@ var Progress = {
   },
   render (h) {
     jsx.h = h
-    var me = this
 
-    var textContent = this.percentText
     var isWrong = this.status2 === 'wrong'
     var isSuccess = this.status2 === 'success'
 

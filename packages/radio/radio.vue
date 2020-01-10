@@ -4,7 +4,7 @@
 import {getParent} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {label, rIcon, div, span} = jsx
+var {label, rIcon, span} = jsx
 
 var Radio = {
   name: 'RRadio',

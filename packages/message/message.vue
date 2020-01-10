@@ -46,7 +46,7 @@ var Message = {
     },
     // 延迟删除操作
     delayDelMsgObj (msgObj) {
-      setTimeout(_ => {
+      setTimeout(() => {
         if (this.stopDelFlag){
           this.delayDelMsgObj(msgObj)
           return
