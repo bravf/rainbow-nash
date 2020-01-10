@@ -363,6 +363,7 @@ var Table = {
         a({
           on_click () {
             me.allCheckeds.map(i => i.__checked = false)
+            me._syncDataCheckeds(me.allCheckeds)
             me.allCheckeds = []
           }
         },'清空所选'),

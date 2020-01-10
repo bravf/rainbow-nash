@@ -19,7 +19,7 @@ div
       r-page(
         v-model="currPage",
         :total="total",
-        :show-total="false",
+        :show-total="true",
         size="small",
         :page-size="1000",
         @change="pageChange"
