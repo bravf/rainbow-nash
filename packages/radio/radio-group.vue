@@ -12,7 +12,7 @@ var RadioGroup = {
     event: 'input',
   },
   props: {
-    checkedValue: [String, Number],
+    checkedValue: [String, Number, Boolean],
     vertical: {
       type: Boolean,
       default: false,

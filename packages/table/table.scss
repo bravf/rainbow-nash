@@ -3,6 +3,21 @@
 .r-table{
   position: relative;
   background-color: $color-white;
+
+  .all-checkeds{
+    margin-bottom: 5px;
+
+    a{
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .all-checkeds-tags{
+      margin-top: 5px;
+      max-height: 100px;
+      overflow: auto;
+    }
+  }
   
   table{
     width: 100%;
@@ -16,15 +31,16 @@
     }
 
     &:last-child{
-      td,th{
-        border-bottom: 0;
-      }
+      // td,th{
+      //   border-bottom: 0;
+      // }
     }
   }
 
   th{
-    background-color: #f7f9fa;
+    background-color: $color-white-light;
     position: relative;
+    font-weight: 500;
 
     div{
       display: inline-flex;
@@ -57,7 +73,7 @@
 
   th, td{
     text-align: left;
-    height: 46px;
+    padding: 10px 0;
     vertical-align: middle;
     border-bottom: 1px solid $color-border;
 

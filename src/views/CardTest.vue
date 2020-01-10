@@ -21,6 +21,9 @@ div(style="padding: 20px; background-color: #fff")
       p| 卡片内容
       p| 卡片内容
       p| 卡片内容
+
+        r-card(title="二层嵌套卡片")
+          p| 你好，二层嵌套
   
 
   r-card(

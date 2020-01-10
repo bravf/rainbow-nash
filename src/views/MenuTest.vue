@@ -40,7 +40,7 @@ div
           r-icon(type="settings")
           |综合设置
     
-  div(style="padding: 0 10px;")
+  div(style="padding: 0 10px; width: 200px;")
     div
       r-menu(
         mode="vertical",

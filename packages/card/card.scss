@@ -22,9 +22,12 @@ $card-head-height: 42px;
   padding: 0 10px;
   border-bottom: 1px solid $color-border;
   font-weight: bold;
-  border-left: 2px solid $color-success;
 }
 
 .r-card-body{
   padding: 20px 10px;
+
+  .r-card-head{
+    background: $color-white-light;
+  }
 }

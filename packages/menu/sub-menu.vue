@@ -62,7 +62,7 @@ var SubMenu = {
       }, 
         ...(this.$slots.title || []),
         rIcon({
-          p_type: this.isExpand ? 'ios-arrow-up' : 'ios-arrow-down'
+          p_type: this.isExpand ? 'arrow-up-b' : 'arrow-down-b'
         })
       ),
       // dropdown

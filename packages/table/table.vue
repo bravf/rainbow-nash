@@ -4,7 +4,7 @@
 import {getPropByPath} from '../../src/utils/instance'
 import jsx from '../../src/utils/jsx'
 
-var {table, thead, tbody, tr, th, td, col ,colgroup, div, rCheckbox, rRadio, span, rIcon, rLoading} = jsx
+var {table, thead, tbody, tr, th, td, col ,colgroup, div, rCheckbox, rRadio, span, rIcon, rLoading, rTag, a} = jsx
 
 var Table = {
   name: 'RTable',
@@ -35,12 +35,34 @@ var Table = {
       default: '合计'
     },
     summaryMethod: Function,
+    // 是否记录所有选中，不受翻页、重新搜索等影响
+    keepAllCheckeds: {
+      type: Boolean,
+      default: false,
+    },
+    allCheckedsRenderMethod: {
+      type: Function,
+      default (item) {
+        return item[this.keyField]
+      }
+    },
+    keyField: {
+      type: String,
+      default: 'id',
+    },
+
   },
   data () {
     return {
       columnConfs: [],
       renderHook: 0,
       radioData: null,
+      allCheckeds: [],
+    }
+  },
+  watch: {
+    data () {
+      this._syncDataCheckeds(this.allCheckeds)
     }
   },
   computed: {
@@ -106,7 +128,9 @@ var Table = {
                         me.data.forEach(data=>{
                           data.__checked = value
                         })
-
+                        if (me.keepAllCheckeds){
+                          me._syncAllCheckeds(me.data)
+                        }
                         me.$emit('check-all-change', value)
 
                         me.renderHook ++
@@ -218,6 +242,9 @@ var Table = {
                     data.__checked = false
                   }
 
+                  if (me.keepAllCheckeds){
+                    me._syncAllCheckeds([data])
+                  }
                   me.$emit('check-change', data)
                   me.renderHook ++
                 },
@@ -329,6 +356,36 @@ var Table = {
         })
       )
     },
+    _renderAllCheckeds () {
+      var me = this
+      var nodes = [
+        span(`一共选中 ${this.allCheckeds.length} 项,`),
+        a({
+          on_click () {
+            me.allCheckeds.map(i => i.__checked = false)
+            me.allCheckeds = []
+          }
+        },'清空所选'),
+      ]
+
+      nodes.push(
+        div({
+          'class_all-checkeds-tags': true,
+        }, ...this.allCheckeds.map((item, idx) => {
+          var content = this.allCheckedsRenderMethod(item)
+          return rTag({
+            props_closeable: true,
+            on_close () {
+              item.__checked = false
+              me.allCheckeds.splice(idx, 1)
+              me._syncDataCheckeds([item])
+            }
+          },content)
+        }))
+      )
+
+      return nodes
+    },
     _getSummaryData (columnConfs, dataSource) {
       if (this.summaryMethod) {
         return this.summaryMethod(columnConfs, dataSource)
@@ -359,23 +416,46 @@ var Table = {
       return summary
     },
 
-    // 公开方法
-    getCheckeds (field) {
-      var checkeds = []
+    // 同步allCheckeds
+    _syncAllCheckeds (items) {
+      items.forEach(item => {
+        var isChecked = item.__checked
+        var idx = this.allCheckeds.findIndex(i => i[this.keyField] === item[this.keyField])
+        var isIn = idx !== -1
 
-      this.data.forEach(data=>{
-        if (data.__checked){
-          if (field){
-            checkeds.push(data[field])
+        if (isChecked){
+          if (!isIn){
+            this.allCheckeds.push(item)
           }
-          else {
-            checkeds.push(data)
+        }
+        else {
+          if (isIn){
+            this.allCheckeds.splice(idx, 1)
           }
         }
       })
+    },
 
-      return checkeds
-    }
+    // 同步 data
+    _syncDataCheckeds (items) {
+      items.forEach(item => {
+        var dataItem = this.data.find(i => i[this.keyField] === item[this.keyField])
+
+        if (dataItem){
+          dataItem.__checked = item.__checked
+        }
+      })
+    },
+
+    // 公开方法
+    getCheckeds (field) {
+      var checkeds = this.data.filter(i => i.__checked)
+      return field ? checkeds.map(i => getPropByPath(i, field).get()) : checkeds
+    },
+
+    getAllCheckeds (field) {
+      return field ? this.allCheckeds.map(i => getPropByPath(i, field).get()) : this.allCheckeds
+    },
   },
   render (h) {
     jsx.h = h
@@ -385,6 +465,10 @@ var Table = {
       div('.' + this.cls.join('+'), {
         s_width: this.width + 'px'
       },
+        div({
+          vif: !!(this.keepAllCheckeds && this.allCheckeds.length),
+          'class_all-checkeds': true,
+        }, ...this._renderAllCheckeds()),
         table(
           ...(this.$slots.default || []) ,
           this._renderColgroup(),

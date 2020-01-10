@@ -1,112 +1,121 @@
 <template lang="pug">
 div.panel
   h3| Table
-  div.margin-10(style="width:700px;")
-    r-table(
-      :data="data", 
-      ref="table", 
-      :border="false", 
-      :show-header="true",
-      :sort-method="sort",
-      :sort-field="sortField",
-      :sort-dir="sortDir",
-      :loading="loading",
-      @check-all-change="checkAllChange",
-      @check-change="checkChange",
-      @row-click="rowClick",
-      :show-summary="true",
-      summary-text="总和",
-    )
-      r-table-column(
-        width="50",
-        type="expand",
-        align="center"
+  div
+    r-card()
+      r-table(
+        :data="data", 
+        ref="table", 
+        :border="false", 
+        :show-header="true",
+        :sort-method="sort",
+        :sort-field="sortField",
+        :sort-dir="sortDir",
+        :loading="loading",
+        @check-all-change="checkAllChange",
+        @check-change="checkChange",
+        @row-click="rowClick",
+        :show-summary="true",
+        summary-text="总和",
+        :keep-all-checkeds="true",
+        :all-checkeds-render-method="checkedsRender",
       )
-        template(slot-scope="scope")
-          div {{scope.data.name}}
+        r-table-column(
+          width="50",
+          type="expand",
+          align="center"
+        )
+          template(slot-scope="scope")
+            div {{scope.data.name}}
 
-      r-table-column(
-        width="50",
-        type="radio",
-      )
-      r-table-column(
-        width="50",
-        type="index",
-      )
-      r-table-column(title="datepicker")
-        template(slot-scope="scope")
-          r-datepicker()
+        r-table-column(
+          width="50",
+          type="checkbox",
+        )
+        r-table-column(
+          width="50",
+          type="index",
+        )
+        r-table-column(title="datepicker")
+          template(slot-scope="scope")
+            r-datepicker()
 
-      r-table-column(
-        title="姓名",
-        field="name",
-        width="80",
-        :ellipsis="true",
-      )
-        template(slot-scope="scope")
-          r-tooltip()
-            span {{scope.data.name}}
-            div(slot="content")
-              | {{scope.data.name}}
+        r-table-column(
+          title="姓名",
+          field="name",
+          width="80",
+          :ellipsis="true",
+        )
+          template(slot-scope="scope")
+            r-tooltip()
+              span {{scope.data.name}}
+              div(slot="content")
+                | {{scope.data.name}}
 
-      r-table-column(
-        title="数学",
-        field="math",
-        align="right",
-        :sortable="true",
-        v-if="test"
+        r-table-column(
+          title="数学",
+          field="math",
+          align="right",
+          :sortable="true",
+          v-if="test"
+        )
+        r-table-column(
+          title="语文",
+          field="chinese.value",
+          align="right",
+          :sortable="true"
+        )
+        r-table-column(
+          title="操作",
+          align="center",
+          width="140",
+          v-if="test"
+        )
+          template(slot-scope="scope")
+            r-button-group(align="center")
+              r-button(
+                type="primary",
+                size="small",
+                @click.native="_alert(scope.data.id)",
+                v-if="test"
+              )| 查看
+              r-button(
+                size="small"
+              )| 编辑
+      
+      r-page(
+        v-model="page.currPage",
+        :total="page.total",
+        :show-total="true",
+        :page-size="10000",
+        @change="pageChange",
       )
-      r-table-column(
-        title="语文",
-        field="chinese.value",
-        align="right",
-        :sortable="true"
-      )
-      r-table-column(
-        title="操作",
-        align="center",
-        width="140",
-        v-if="test"
-      )
-        template(slot-scope="scope")
-          r-button-group(align="center")
-            r-button(
-              type="primary",
-              size="small",
-              @click.native="_alert(scope.data.id)",
-              v-if="test"
-            )| 查看
-            r-button(
-              size="small"
-            )| 编辑
-    
-    r-page(
-      v-model="page.currPage",
-      :total="page.total",
-      :show-total="true",
-      :page-size="10000"
-    )
 
-    div(v-if="hello[0]") 123_{{hello[0].x}} 
+    r-button(@click.native="getCheckeds()")| 获取 checkeds
+    r-button(@click.native="getAllCheckeds()")| 获取 allCheckeds
+    //- div(v-if="hello[0]") 123_{{hello[0].x}} 
 </template>
 
 <script>
-var data = []
-for (var i=0; i<10; i++){
-  data.push({
-    id: i,
-    name: '张三测试测试测试测试' + i,
-    math: i * 10,
-    chinese: {
-      value: i* 10 + 5
-    },
-  })
+var getData = (pageNo) => {
+  return Array(10).fill(0).map( (i, j) => {
+    var x = pageNo * 10 + j
+    return {
+      id: x,
+      name: '张三测试测试测试测试' + x,
+      math: x * 10,
+      chinese: {
+        value: x * 10 + 5,
+      },
+    }
+  }) 
 }
+
 export default {
   data () {
     return {
       hello: [],
-      data : data,
+      data : [],
       test: true,
       sortField: 'math',
       sortDir: 'asc',
@@ -117,6 +126,9 @@ export default {
         total: 34500,
       }
     }
+  },
+  created () {
+    this.data = getData(this.page.currPage)
   },
   methods: {
     _alert (id) {
@@ -156,6 +168,18 @@ export default {
     },
     summary (columns, data) {
       return ['你好', '', '', 100, 100, '']
+    },
+    checkedsRender (item) {
+      return item['name']
+    },
+    pageChange () {
+      this.data = getData(this.page.currPage)
+    },
+    getCheckeds () {
+      console.log(this.$refs.table.getCheckeds('chinese.value'))
+    },
+    getAllCheckeds () {
+      console.log(this.$refs.table.getAllCheckeds('chinese.value'))
     }
   }
 }
